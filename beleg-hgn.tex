@@ -46,14 +46,14 @@ Wintersemester 2013/2014}
 \begin{center}
 \begin{Large}
 \vfill {\textsf{\textbf{
-Internet Protokoll Version 6\\
+Die Internet Protokolle in Version 4 und 6 im Vergleich - ein \"Uberblick\\
 }}}
 \end{Large}
 Beleg im Fach Hochgeschwindigkeitsnetze
 \end{center}
  
 \begin{small}
-\vfill Marcel Kirbst \\ Sieglitz 39 \\ 06618 Molauer Land \\
+\vfill Marcel Kirbst, B.Sc. \\ Sieglitz 39 \\ 06618 Molauer Land \\
 marcel.kirbst@htwk-leipzig.de\\
 \today
 \end{small}
@@ -74,27 +74,58 @@ marcel.kirbst@htwk-leipzig.de\\
 \pagestyle{plain}
  
 \section{Einleitung}
-Dieser Beleg befasst sich mit der Vorstellung der Protokollfamilie IPv6. Neben einem kompakten Überblick über IPv6 soll auf die Notwendigkeit sowie die Vorzüge von IPv6 im Vergleich zu IPv4, der derzeit weltweit am meisten im Internet genutzten Protokollfamilie,  eingegangen werden.
+Dieser Beleg befasst sich mit der Vorstellung der Protokollfamilie IPv6. Neben einem kompakten Überblick über IPv6 soll auf die Notwendigkeit sowie die Vorzüge von IPv6 im Vergleich zu IPv4, der derzeit weltweit am meisten im Internet genutzten Protokollfamilie, eingegangen werden.
  
 \section{Warum IPv6 ?}
 Das Internet ist heute überall im täglichen Leben präsent und wird von der UN inzwischen zu den Menschenrechten gezählt.\cite{uninet} Die im Internet heute noch am häufigsten verwendete Protokollfamilie ist IPv4. Wie der folgende Abschnitt darlegt, ist die weitere Verwendung von IPv4 aber mit immer mehr Problemen behaftet.
 
 \subsection{Probleme mit IPv4}
 Zu Beginn der Entwicklung des Internets war nicht abzusehen wie rasant und erfolgreich sich diese vollziehen würde. Ziel war einige wenige Rechnersysteme mit einander zu verbinden. Daher schien es beispielsweise mehr als ausreichend einen 32 Bit breiten Adressraum zu wählen, der somit $2^{32} = 4.294.967.296$ eindeutige Netzwerkadressen zulässt. In den 1970er Jahren entsprach das immerhin annährend einer IPv4-Adresse pro Erdenbewohner. 
- 
-\subsection{Zwischenüberschrift}
-Hier beginnt der zweite Unterabschnitt des ersten Hauptteils.
- 
-\section{zweiter Hauptteil}
+
+\subsubsection{Adressknappheit}
+Zu Beginn wurde IPv4 Adressraum relativ gro\ss{}z\"ugig verteilt. Viele Unternehmen der damaligen Zeit erhielten 24 Bit gro\ss{}e Adressbl\"ocke. Das bedeutet, dass dem jeweilgen Unternehmen ein Adressblock zugeteilt wurde, welcher $2^{24}$ also $16.777.216$ IPv4 Adressen umfasst. Beispiele f\"ur solche Unternehmen sind IBM (Adressraum 9.*.*.*), Hewlett-Packard (15.*.*.*) und Apple (17.*.*.*). Eine vollst\"andige Liste l\"asst sich unter \cite{ianaipv4list} einsehen.
+
+Beg\"unstigt wurde diese Problematik durch die anf\"angliche strikte Adresseinteilung in Klassen (Class A - E Netze), wobei es sich bei Class-A Netzen um besagte Netze mit 8 Bit langem Netzpr\"afix handelt. Class-B Netze besitzen ein Netzpr\"afix von 16 Bit und Class-C lassNetze eine Netzpr\"afix von 24 Bit. Es konnten somit nur Netzbl\"ocke f\"ur $2^{32} - 2^{24} = 256$ oder weniger Teilnehmer (Class-C Netze), $2^{32} - 2^{16} = 65.536$ oder weniger Teilnehmer (Class-B Netze) oder besagte $2^{32} - 2^{8} = 16.777.216$ zugeteilt werden. Beispielsweise bedeutete das f\"ur jede Einrichtung, die wenig mehr als 256 IPv4-Adressen ben\"otigte, ein Class-B Adressblock zu beantragen, auch wenn dann ein Gro\ss{}teil der Adressen ungenutzt blieb.
+
+Die nachtr\"agliche Einf\"uhrung einer Technik namens "`Classless Interdomain Routing"' (Abk\"urzung: CIDR) milderte die Problemstellung in der Weise ab, dass eine so genannte Netzwerkmaske zu jeder IPv4-Adresse angegeben wird, die angibt wieviele Bits der IPv4-Adresse den Netzwerkpr\"afix zugeordnet werden. Die Netzwerkmaske $255.255.0.0$ f\"ur die IPv4-Adresse $192.168.12.34$ definiert das Netzwerkpr\"afix $192.168$ sowie die Teilnehmeradresse $12.34$.
+
+Au\ss{}erdem ist zu erw\"ahnen das sich die IPv4-Adressen in einem Netzwerksegment nicht vollst\"andig Teilnehmern zuordnen lassen, da bestimmte Adressen wie beispielsweise $192.168.12.0/24$ (Bezeichner f\"ur dieses Netzsegment) oder $192.168.12.255/24$ (Broadcastadresse in diesem Netzsegment) eine besondere Bedeutung haben. 
+
+Ein weiterer Umstand der die Problematik versch\"arft ist, dass die Zuteilung von IPv4-Adressbl\"ocken durch die IANA endg\"ultig ist. Eine M\"oglichkeit IPv4-Adressen zur\"uckzuziehen ist nicht vorgesehen. 
+
+
+\subsubsection{Konfiguration von Ger\"aten in IPv4}
+
+Anf\"anglich musste jedes neue Netzwerkger\"at von Hand durch den Benutzer konfiguriert werden um im Netzwerk kommunizieren zu k\"onnen. Das umfasst mindestens die Vergabe einer IPv4-Adresse mit der zugeh\"origen Netzmaske. Soll das Ger\"at au\ss{}erdem noch mit dem Internet kommunizieren k\"onnen ist die Angabe der IPv4-Adresse des Routers in diesem Netz sowie mindestens eines DomainNameService-Servers (Abk\"urzung: DNS-Server) erforderlich. 
+
+Um unerfahrenen beziehungsweise unachtsamen Benutzern diese potentielle Fehlerquelle zu ersparen, wurde eine Technik namens Dynamic Host Configuration Protocol (Abk\"urzung: DHCP) \cite{rfcdhcp} spezifiziert, die es erm\"oglicht Konfiguration eines Netzwerkg\"er\"ates ohne Eingriff des Benutzers, nur durch einen DHCP-Server in diesem Netzwerksegment vorzunehmen. Leider arbeitet auch dieser Mechanismus nicht immer zuverl\"assig und fehlerfrei. Beispielsweise ist es f\"ur ein Netzwerkger\"at durchaus m\"oglich manuell eine IPv4-Adresse zu konfigurieren und zu verwenden die innerhalb des IPv4-Adresskontingentes liegt, der einem DHCP-Server zur Zuteilung an anfragende DHCP-Klienten zugeteilt wurde. Solche Adresskonflikte f\"uhren in der Regel zu Netzwerkproblemen.
+
+
+\subsection{NAT}
+Network Adress Translation (Abk\"urzung: NAT) ist eine weitere Technik, die entwickelt wurde um die Adressknappheit in IPv4 zu abzumildern. In den meisten F\"allen ist ein Netzwerkger\"at nicht direkt mit dem Internet verbunden, sondern nur Teilnehmer in einem Netzwerk. In den meisten Netzwerken werden so genannte "`private IPv4-Adressen"' genutzt um die Netzwerkger\"ate zu adressieren. Das sind IPv4-Adressen die von der IANA speziell f\"ur diesen Zweck spezifiziert wurden und aus diesem Grund auch nicht im Internet genutzt werden k\"onnen. Router im Internet verwerfen Pakete, die als Sender- oder Empf\"angeradresse eine solche private IPv4-Adresse enthalten. Private IPv4-Adressen sind alle IPv4-Adressen aus den Bl\"ocken $10.0.0.0/8$ bis $10.255.255.255/8$, $172.16.0.0/12$ bis $172.31.255.255/12$ sowie $192.168.0.0/16$ bis $192.168.255.255/16$. 
+
+Die Funktion eines Routers, der NAT implementiert ist prinzipiell, dass alle Pakete von Netzwerkteilnehmen mit privater IPV4-Adresse im lokelen Netzwerk, die ins Internet geroutet werden sollen, vom Router so umgeschrieben werden, dass die private Absender-IP jedes Paketes durch die \"offentliche IP-Adresse des Routers ersetzt wird. Erh\"alt der Router Antwortpakete aus dem Internet die an diesen adressiert sind, schreibt er die Empf\"anger-IP wieder auf die private IP-Adresse des Netzwerkger\"ates um un leitet es dann weiter. Die folgende Grafik soll dieses illustrieren:
+
+(GRAFIK NAT EINF\"UGEN)
+
+In einigen Szenarien, in denen weniger komplexe, verbindungsorientierte Protokolle wie beispielsweise HTTP eingesetzt werden funktioniert NAT einigerma\ss{}en zufriedenstellend. In komplexeren Protokollen wie dem File Transfer Protokoll (Abk\"urzung: FTP) oder dem Session Initiaton Protokoll (Abk\"urzung: SIP), in denen zum Beispiel im Laufe der Etablierung der Kommunikation weitere Ports f\"ur die Kommunikation zwischen den Endger\"aten ausgehandelt werden m\"ussen, st\"o\ss{}t NAT aber schnell an seine Grenzen, mit der Folge das diese Protokolle sich dann nicht oder zumindest nicht zufriedenstellend einsetzen lassen.
+
+Zwar kann dem zum Beispiel teilweise durch den Einsatz von spezifischen Proxy-Diensten auf dem Router f\"ur jedes einzelne Protokoll entgegen gewirkt werden, jedoch erh\"ot dieses Vorgehen die Komplexit\"at und den Verwaltungs- und Wartungsaufwand f\"ur die betreffenden Router.
+
+\subsection{Ineffizien in IPv4}
+-Sinnlose Berechnung von Pr\"ufsummen
+-fixe Header
+
+\section{\"Uberblick zu IPv6}
 Hier beginnnt der zweite Hauptteil des Belegs.
  
-\subsection{Zwischenüberschrift}
+\section{L\"osungsans\"atze in IPv6 zu den Problemen mit IPv4}
 Hier beginnt der erste Unterabschnitt des zweiten Hauptteils.
  
 \subsection{Zwischenüberschrift}
 Hier beginnt der zweite Unterabschnitt des zweiten Hauptteils.
  
-\section{Schluss}
+\section{Zusammenfassung und Ausblick}
 Dies ist der Schlussteil.
 %Beginn einer neuen Seite
 \clearpage
@@ -103,7 +134,14 @@ Dies ist der Schlussteil.
 
 \begin{thebibliography}{50}
 
-\bibitem{uninet}    \url{https://www.un.org/Depts/german/menschenrechte/a-hrc-20-L.13.pdf}
+\bibitem{uninet}    \url{https://www.un.org/Depts/german/menschenrechte/a-hrc-20-L.13.pdf}\\
+abrufbar am 03.03.2014
+
+\bibitem{ianaipv4list} \url{https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.txt}\\
+abrufbar am 05.03.2014
+
+\bibitem{rfcdhcp} \url{http://tools.ietf.org/html/rfc2131}\\
+abrufbar am 05.03.2014
 
 \end{thebibliography}
  
