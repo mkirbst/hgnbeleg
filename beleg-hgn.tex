@@ -1,38 +1,100 @@
 %Wir verwenden eine DIN-A4-Seite und die Schriftgröße 12.
 \documentclass[a4paper,12pt]{scrartcl} 
-%%Basiert auf folgender Quelle: <!-- m --><a class="postlink" href="http://www.studieren-info.de/downloads/vorlage-hausarbeit.tex">http://www.studieren-info.de/downloads/ ... arbeit.tex</a><!-- m -->
- 
+
+
 %Diese drei Pakete benötigen wir für die Umlaute, Deutsche Silbentrennung etc.
 %Apple-Nutzer sollten anstelle von \usepackage[latin1]{inputenc} das Paket \usepackage[applemac]{inputenc} verwenden
 %% \usepackage[latin1]{inputenc}
 %%apt-get install texlive-lang-german damit ngerman keine Probleme mehr macht !!
-\usepackage[utf8]{inputenc} 
-\usepackage[T1]{fontenc}
-\usepackage[ngerman]{babel}
- 
+%\usepackage[utf8]{inputenc} 
+%\usepackage[T1]{fontenc}
+%\usepackage[ngerman]{babel}
+
 %Das Paket erzeugt ein anklickbares Verzeichnis in der PDF-Datei.
-\usepackage{hyperref}
- 
+%\usepackage{hyperref}
+
 %Das Paket wird für die anderthalb-zeiligen Zeilenabstand benötigt
 \usepackage{setspace}
- 
-%mathematische Zeichen/Symbole
-\usepackage{amsmath}
-\usepackage{amssymb}
+
+%%HTWM-Vorlage - benoetigt apt-get install texlive-fonts-extra
+\setcounter{tocdepth}{3}				%Schatelungstiefe Inhaltsverz.
+\usepackage[utf8]{inputenc}			%deutsche Umlaute
+\usepackage{german, ngerman}
+\usepackage[ngerman]{babel}			%Rechtschreibprüfung
+\usepackage{color,listings} 			%Quellcode Highlighting, bindet das
+%Paket Listings ein
+\usepackage{listings}
+\usepackage{color}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}				%srccode
+\usepackage[scaled]{beramono}		%srccode
+\usepackage{longtable}				%mehrseitige tabellen
+\usepackage[tableposition=b]{caption}
+\usepackage[pdftex, pdftoolbar=false, hyperfootnotes=false, bookmarks,
+bookmarksopen, bookmarksnumbered, bookmarksopenlevel=2, pdfpagelabels=true,
+pdfstartpage=3, pdfstartview=FitH,]{hyperref} %Verlinkungen
+\usepackage{array}					%farbige Tabellen
+\usepackage[table]{xcolor} 			%farbige Tabellen
+\usepackage{graphicx}				% \includegraphics bnoetigt dies
+
+\usepackage{fancyhdr, graphicx}		%% Logo auf Titelseite
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{}
+\fancyhead[R]{
+  \includegraphics[width=52mm]{./images/htwk.png}
+}
+%\usepackage{draftwatermark}			% wasserzeichen
+	%Quelle: http://choorucode.com/2010/05/05/latex-adding-draft-watermark/?like=1&source=post_flair&_wpnonce=1c9f85538d
+%\SetWatermarkText{VORABVERSION}		% wasserzeichen-text
+%\SetWatermarkLightness{0.9}			% wasserzeichen-kontrast
+%\SetWatermarkScale{2.5}				% wasserzeichen-zeichengroe\ss{}e
+
+
+
+\definecolor{Navy}{rgb}{0,0,0.5}
+\definecolor{Gray}{gray}{0.5}
+\definecolor{dunkelgrau}{rgb}{0.8,0.8,0.8}
+\definecolor{hellgrau}{rgb}{0.95,0.95,0.95}
+\definecolor{hellgrau2}{rgb}{0.93,0.93,0.93}
+
+\hypersetup{
+	colorlinks=true, 			% false: boxed links; true: colored links
+	linkcolor=Navy,          		% color of internal links
+	citecolor=Gray,        			% color of links to bibliography
+	filecolor=magenta,      		% color of file links
+	urlcolor=blue,           			% color of external links
+	linkbordercolor={1 1 1}, 		% set to white
+	citebordercolor={1 1 1} 		% set to white
+}
+
 
 %Einrückung eines neuen Absatzes
 \setlength{\parindent}{0em}
- 
+
 %Definition der Ränder
-\usepackage[paper=a4paper,left=30mm,right=30mm,top=30mm,bottom=30mm]{geometry} 
- 
+\usepackage[paper=a4paper,left=30mm,right=30mm,top=30mm,bottom=30mm]{geometry}
+
 %Abstand der Fussnoten
 \deffootnote{1em}{1em}{\textsuperscript{\thefootnotemark\ }}
- 
+
 %Regeln, bis zu welcher Tiefe (section,subsection,subsubsection) Überschriften angezeigt werden sollen (Anzeige der Überschriften im Verzeichnis / Anzeige der Nummerierung)
-\setcounter{tocdepth}{3}
-\setcounter{secnumdepth}{3}
- 
+%\setcounter{tocdepth}{3}
+%\setcounter{secnumdepth}{3}
+
+\fancypagestyle{htwkheader}
+{
+   \fancyhf{}	% clear all header and footer fields
+  \fancyhead[RO]{
+	\makebox[\textwidth]{	%% schiebe Logo nach aussen auf den Rand
+		\rule{1				%% nach aussen schieben hoeherer Wert -> Logo weiter nach aussen
+		  \textwidth}{0cm} %% nicht nach unten schieben = 0cm
+			\includegraphics*[width=52mm]{./images/htwk.png}	%%Logo HTWK
+	  }
+  }
+}
+
+
+
 \begin{document}
  
 %Beginn der Titelseite
@@ -46,7 +108,8 @@ Wintersemester 2013/2014}
 \begin{center}
 \begin{Large}
 \vfill {\textsf{\textbf{
-Die Internet Protokolle in Version 4 und 6 im Vergleich - ein \"Uberblick\\
+Die Internet Protokolle in Version 4 und 6\\
+im Vergleich - ein \"Uberblick\\
 }}}
 \end{Large}
 Beleg im Fach Hochgeschwindigkeitsnetze
@@ -98,15 +161,21 @@ Ein weiterer Umstand der die Problematik versch\"arft ist, dass die Zuteilung vo
 
 Anf\"anglich musste jedes neue Netzwerkger\"at von Hand durch den Benutzer konfiguriert werden um im Netzwerk kommunizieren zu k\"onnen. Das umfasst mindestens die Vergabe einer IPv4-Adresse mit der zugeh\"origen Netzmaske. Soll das Ger\"at au\ss{}erdem noch mit dem Internet kommunizieren k\"onnen ist die Angabe der IPv4-Adresse des Routers in diesem Netz sowie mindestens eines DomainNameService-Servers (Abk\"urzung: DNS-Server) erforderlich. 
 
-Um unerfahrenen beziehungsweise unachtsamen Benutzern diese potentielle Fehlerquelle zu ersparen, wurde eine Technik namens Dynamic Host Configuration Protocol (Abk\"urzung: DHCP) \cite{rfcdhcp} spezifiziert, die es erm\"oglicht Konfiguration eines Netzwerkg\"er\"ates ohne Eingriff des Benutzers, nur durch einen DHCP-Server in diesem Netzwerksegment vorzunehmen. Leider arbeitet auch dieser Mechanismus nicht immer zuverl\"assig und fehlerfrei. Beispielsweise ist es f\"ur ein Netzwerkger\"at durchaus m\"oglich manuell eine IPv4-Adresse zu konfigurieren und zu verwenden die innerhalb des IPv4-Adresskontingentes liegt, der einem DHCP-Server zur Zuteilung an anfragende DHCP-Klienten zugeteilt wurde. Solche Adresskonflikte f\"uhren in der Regel zu Netzwerkproblemen.
+Um unerfahrenen beziehungsweise unachtsamen Benutzern diese potentielle Fehlerquelle zu ersparen, wurde eine Technik namens Dynamic Host Configuration Protocol (Abk\"urzung: DHCP) \cite[RFC2131]{rfcdhcp} spezifiziert, die es erm\"oglicht Konfiguration eines Netzwerkg\"er\"ates ohne Eingriff des Benutzers, nur durch einen DHCP-Server in diesem Netzwerksegment vorzunehmen. Leider arbeitet auch dieser Mechanismus nicht immer zuverl\"assig und fehlerfrei. Beispielsweise ist es f\"ur ein Netzwerkger\"at durchaus m\"oglich manuell eine IPv4-Adresse zu konfigurieren und zu verwenden die innerhalb des IPv4-Adresskontingentes liegt, der einem DHCP-Server zur Zuteilung an anfragende DHCP-Klienten zugeteilt wurde. Solche Adresskonflikte f\"uhren in der Regel zu Netzwerkproblemen.
 
 
 \subsection{NAT}
-Network Adress Translation (Abk\"urzung: NAT) ist eine weitere Technik, die entwickelt wurde um die Adressknappheit in IPv4 zu abzumildern. In den meisten F\"allen ist ein Netzwerkger\"at nicht direkt mit dem Internet verbunden, sondern nur Teilnehmer in einem Netzwerk. In den meisten Netzwerken werden so genannte "`private IPv4-Adressen"' genutzt um die Netzwerkger\"ate zu adressieren. Das sind IPv4-Adressen die von der IANA speziell f\"ur diesen Zweck spezifiziert wurden und aus diesem Grund auch nicht im Internet genutzt werden k\"onnen. Router im Internet verwerfen Pakete, die als Sender- oder Empf\"angeradresse eine solche private IPv4-Adresse enthalten. Private IPv4-Adressen sind alle IPv4-Adressen aus den Bl\"ocken $10.0.0.0/8$ bis $10.255.255.255/8$, $172.16.0.0/12$ bis $172.31.255.255/12$ sowie $192.168.0.0/16$ bis $192.168.255.255/16$. 
+Network Adress Translation (Abk\"urzung: NAT) \cite[RFC1631]{rfcnat} ist eine weitere Technik, die entwickelt wurde um die Adressknappheit in IPv4 zu abzumildern. In den meisten F\"allen ist ein Netzwerkger\"at nicht direkt mit dem Internet verbunden, sondern nur Teilnehmer in einem Netzwerk. In den meisten Netzwerken werden so genannte "`private IPv4-Adressen"' genutzt um die Netzwerkger\"ate zu adressieren. Das sind IPv4-Adressen die von der IANA speziell f\"ur diesen Zweck spezifiziert wurden und aus diesem Grund auch nicht im Internet genutzt werden k\"onnen. Router im Internet verwerfen Pakete, die als Sender- oder Empf\"angeradresse eine solche private IPv4-Adresse enthalten. Private IPv4-Adressen sind alle IPv4-Adressen aus den Bl\"ocken $10.0.0.0/8$ bis $10.255.255.255/8$, $172.16.0.0/12$ bis $172.31.255.255/12$ sowie $192.168.0.0/16$ bis $192.168.255.255/16$. 
 
 Die Funktion eines Routers, der NAT implementiert ist prinzipiell, dass alle Pakete von Netzwerkteilnehmen mit privater IPV4-Adresse im lokelen Netzwerk, die ins Internet geroutet werden sollen, vom Router so umgeschrieben werden, dass die private Absender-IP jedes Paketes durch die \"offentliche IP-Adresse des Routers ersetzt wird. Erh\"alt der Router Antwortpakete aus dem Internet die an diesen adressiert sind, schreibt er die Empf\"anger-IP wieder auf die private IP-Adresse des Netzwerkger\"ates um un leitet es dann weiter. Die folgende Grafik soll dieses illustrieren:
 
-(GRAFIK NAT EINF\"UGEN)
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[width=1\hsize]{./Zeichnungen/IPv4NAT.pdf}
+ \end{center}
+\caption[Beispielhafte Standardkonfiguration eines Internetanschlu\ss{} mit NAT, Quelle: Autor, verwendete Symbole unterliegen der
+GPL]{\label{stdinet}Beispielhafte Standardkonfiguration eines Internetanschlu\ss{}.}
+\end{figure}
 
 In einigen Szenarien, in denen weniger komplexe, verbindungsorientierte Protokolle wie beispielsweise HTTP eingesetzt werden funktioniert NAT einigerma\ss{}en zufriedenstellend. In komplexeren Protokollen wie dem File Transfer Protokoll (Abk\"urzung: FTP) oder dem Session Initiaton Protokoll (Abk\"urzung: SIP), in denen zum Beispiel im Laufe der Etablierung der Kommunikation weitere Ports f\"ur die Kommunikation zwischen den Endger\"aten ausgehandelt werden m\"ussen, st\"o\ss{}t NAT aber schnell an seine Grenzen, mit der Folge das diese Protokolle sich dann nicht oder zumindest nicht zufriedenstellend einsetzen lassen.
 
@@ -134,13 +203,19 @@ Dies ist der Schlussteil.
 
 \begin{thebibliography}{50}
 
-\bibitem{uninet}    \url{https://www.un.org/Depts/german/menschenrechte/a-hrc-20-L.13.pdf}\\
+\bibitem{uninet}    
+\url{https://www.un.org/Depts/german/menschenrechte/a-hrc-20-L.13.pdf}\\
 abrufbar am 03.03.2014
 
 \bibitem{ianaipv4list} \url{https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.txt}\\
 abrufbar am 05.03.2014
 
-\bibitem{rfcdhcp} \url{http://tools.ietf.org/html/rfc2131}\\
+\bibitem{rfcnat} RFC1631 - The IP Network Address Translator\\
+\url{https://www.ietf.org/rfc/rfc1631.txt}\\
+abrufbar am 06.03.2014
+
+\bibitem{rfcdhcp} RFC2131 - Dynamic Host Configuration Protocol\\
+\url{http://tools.ietf.org/html/rfc2131}\\
 abrufbar am 05.03.2014
 
 \end{thebibliography}
