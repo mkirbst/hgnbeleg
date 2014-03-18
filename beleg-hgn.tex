@@ -5,7 +5,8 @@
 %Diese drei Pakete benötigen wir für die Umlaute, Deutsche Silbentrennung etc.
 %Apple-Nutzer sollten anstelle von \usepackage[latin1]{inputenc} das Paket \usepackage[applemac]{inputenc} verwenden
 %% \usepackage[latin1]{inputenc}
-%%apt-get install texlive-lang-german damit ngerman keine Probleme mehr macht !!
+%%apt-get install texlive-lang-german kile kile-l10n  aspell-de 
+%%damit ngerman keine Probleme mehr macht !!
 %\usepackage[utf8]{inputenc} 
 %\usepackage[T1]{fontenc}
 %\usepackage[ngerman]{babel}
@@ -161,7 +162,7 @@ Ein weiterer Umstand der die Problematik versch\"arft ist, dass die Zuteilung vo
 
 Anf\"anglich musste jedes neue Netzwerkger\"at von Hand durch den Benutzer konfiguriert werden um im Netzwerk kommunizieren zu k\"onnen. Das umfasst mindestens die Vergabe einer IPv4-Adresse mit der zugeh\"origen Netzmaske. Soll das Ger\"at au\ss{}erdem noch mit dem Internet kommunizieren k\"onnen ist die Angabe der IPv4-Adresse des Routers in diesem Netz sowie mindestens eines DomainNameService-Servers (Abk\"urzung: DNS-Server) erforderlich. 
 
-Um unerfahrenen beziehungsweise unachtsamen Benutzern diese potentielle Fehlerquelle zu ersparen, wurde eine Technik namens Dynamic Host Configuration Protocol (Abk\"urzung: DHCP) \cite[RFC2131]{rfcdhcp} spezifiziert, die es erm\"oglicht Konfiguration eines Netzwerkg\"er\"ates ohne Eingriff des Benutzers, nur durch einen DHCP-Server in diesem Netzwerksegment vorzunehmen. Leider arbeitet auch dieser Mechanismus nicht immer zuverl\"assig und fehlerfrei. Beispielsweise ist es f\"ur ein Netzwerkger\"at durchaus m\"oglich manuell eine IPv4-Adresse zu konfigurieren und zu verwenden die innerhalb des IPv4-Adresskontingentes liegt, der einem DHCP-Server zur Zuteilung an anfragende DHCP-Klienten zugeteilt wurde. Solche Adresskonflikte f\"uhren in der Regel zu Netzwerkproblemen.
+Um unerfahrenen beziehungsweise unachtsamen Benutzern diese potentielle Fehlerquelle zu ersparen, wurde eine Technik namens Dynamic Host Configuration Protocol (Abk\"urzung: DHCP) \cite[RFC2131]{rfcdhcp} spezifiziert, die es erm\"oglicht Konfiguration eines Netzwerkg\"er\"ates ohne Eingriff des Benutzers, nur durch einen DHCP-Server, welcher zustandsbasiert arbeitet,  in diesem Netzwerksegment vorzunehmen. Leider arbeitet auch dieser Mechanismus nicht immer zuverl\"assig und fehlerfrei. Beispielsweise ist es f\"ur ein Netzwerkger\"at durchaus m\"oglich manuell eine IPv4-Adresse zu konfigurieren und zu verwenden die innerhalb des IPv4-Adresskontingentes liegt, der einem DHCP-Server zur Zuteilung an anfragende DHCP-Klienten zugeteilt wurde. Solche Adresskonflikte f\"uhren in der Regel zu Netzwerkproblemen.
 
 
 \subsection{NAT}
@@ -181,12 +182,12 @@ In einigen Szenarien, in denen weniger komplexe, verbindungsorientierte Protokol
 
 Zwar kann dem zum Beispiel teilweise durch den Einsatz von spezifischen Proxy-Diensten auf dem Router f\"ur jedes einzelne Protokoll entgegen gewirkt werden, jedoch erh\"ot dieses Vorgehen die Komplexit\"at und den Verwaltungs- und Wartungsaufwand f\"ur die betreffenden Router.
 
-\subsection{Ineffizien in IPv4}
+\subsection{Ineffizienz in IPv4}
 -Sinnlose Berechnung von Pr\"ufsummen
 -fixe Header
 
 \section{\"Uberblick zu IPv6}
-Hier beginnnt der zweite Hauptteil des Belegs.
+Hier beginnt der zweite Hauptteil des Belegs.
  
 \section{L\"osungsans\"atze in IPv6 zu den Problemen mit IPv4}
 Hier beginnt der erste Unterabschnitt des zweiten Hauptteils.
