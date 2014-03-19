@@ -7,9 +7,9 @@
 %% \usepackage[latin1]{inputenc}
 %%apt-get install texlive-lang-german kile kile-l10n  aspell-de 
 %%damit ngerman keine Probleme mehr macht !!
-%\usepackage[utf8]{inputenc} 
-%\usepackage[T1]{fontenc}
-%\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
 
 %Das Paket erzeugt ein anklickbares Verzeichnis in der PDF-Datei.
 %\usepackage{hyperref}
@@ -162,11 +162,11 @@ Ein weiterer Umstand der die Problematik versch\"arft ist, dass die Zuteilung vo
 
 Anf\"anglich musste jedes neue Netzwerkger\"at von Hand durch den Benutzer konfiguriert werden um im Netzwerk kommunizieren zu k\"onnen. Das umfasst mindestens die Vergabe einer IPv4-Adresse mit der zugeh\"origen Netzmaske. Soll das Ger\"at au\ss{}erdem noch mit dem Internet kommunizieren k\"onnen ist die Angabe der IPv4-Adresse des Routers in diesem Netz sowie mindestens eines DomainNameService-Servers (Abk\"urzung: DNS-Server) erforderlich. 
 
-Um unerfahrenen beziehungsweise unachtsamen Benutzern diese potentielle Fehlerquelle zu ersparen, wurde eine Technik namens Dynamic Host Configuration Protocol (Abk\"urzung: DHCP) \cite[RFC2131]{rfcdhcp} spezifiziert, die es erm\"oglicht Konfiguration eines Netzwerkg\"er\"ates ohne Eingriff des Benutzers, nur durch einen DHCP-Server, welcher zustandsbasiert arbeitet,  in diesem Netzwerksegment vorzunehmen. Leider arbeitet auch dieser Mechanismus nicht immer zuverl\"assig und fehlerfrei. Beispielsweise ist es f\"ur ein Netzwerkger\"at durchaus m\"oglich manuell eine IPv4-Adresse zu konfigurieren und zu verwenden die innerhalb des IPv4-Adresskontingentes liegt, der einem DHCP-Server zur Zuteilung an anfragende DHCP-Klienten zugeteilt wurde. Solche Adresskonflikte f\"uhren in der Regel zu Netzwerkproblemen.
+Um unerfahrenen beziehungsweise unachtsamen Benutzern diese potentielle Fehlerquelle zu ersparen, wurde eine Technik namens Dynamic Host Configuration Protocol (Abk\"urzung: DHCP) \cite[RFC2131]{rfc2131} spezifiziert, die es erm\"oglicht Konfiguration eines Netzwerkg\"er\"ates ohne Eingriff des Benutzers, nur durch einen DHCP-Server, welcher zustandsbasiert arbeitet,  in diesem Netzwerksegment vorzunehmen. Leider arbeitet auch dieser Mechanismus nicht immer zuverl\"assig und fehlerfrei. Beispielsweise ist es f\"ur ein Netzwerkger\"at durchaus m\"oglich manuell eine IPv4-Adresse zu konfigurieren und zu verwenden die innerhalb des IPv4-Adresskontingentes liegt, der einem DHCP-Server zur Zuteilung an anfragende DHCP-Klienten zugeteilt wurde. Solche Adresskonflikte f\"uhren in der Regel zu Netzwerkproblemen.
 
 
 \subsection{NAT}
-Network Adress Translation (Abk\"urzung: NAT) \cite[RFC1631]{rfcnat} ist eine weitere Technik, die entwickelt wurde um die Adressknappheit in IPv4 zu abzumildern. In den meisten F\"allen ist ein Netzwerkger\"at nicht direkt mit dem Internet verbunden, sondern nur Teilnehmer in einem Netzwerk. In den meisten Netzwerken werden so genannte "`private IPv4-Adressen"' genutzt um die Netzwerkger\"ate zu adressieren. Das sind IPv4-Adressen die von der IANA speziell f\"ur diesen Zweck spezifiziert wurden und aus diesem Grund auch nicht im Internet genutzt werden k\"onnen. Router im Internet verwerfen Pakete, die als Sender- oder Empf\"angeradresse eine solche private IPv4-Adresse enthalten. Private IPv4-Adressen sind alle IPv4-Adressen aus den Bl\"ocken $10.0.0.0/8$ bis $10.255.255.255/8$, $172.16.0.0/12$ bis $172.31.255.255/12$ sowie $192.168.0.0/16$ bis $192.168.255.255/16$. 
+Network Adress Translation (Abk\"urzung: NAT) \cite[RFC1631]{rfc1631} ist eine weitere Technik, die entwickelt wurde um die Adressknappheit in IPv4 zu abzumildern. In den meisten F\"allen ist ein Netzwerkger\"at nicht direkt mit dem Internet verbunden, sondern nur Teilnehmer in einem Netzwerk. In den meisten Netzwerken werden so genannte "`private IPv4-Adressen"' genutzt um die Netzwerkger\"ate zu adressieren. Das sind IPv4-Adressen die von der IANA speziell f\"ur diesen Zweck spezifiziert wurden und aus diesem Grund auch nicht im Internet genutzt werden k\"onnen. Router im Internet verwerfen Pakete, die als Sender- oder Empf\"angeradresse eine solche private IPv4-Adresse enthalten. Private IPv4-Adressen sind alle IPv4-Adressen aus den Bl\"ocken $10.0.0.0/8$ bis $10.255.255.255/8$, $172.16.0.0/12$ bis $172.31.255.255/12$ sowie $192.168.0.0/16$ bis $192.168.255.255/16$. 
 
 Die Funktion eines Routers, der NAT implementiert ist prinzipiell, dass alle Pakete von Netzwerkteilnehmen mit privater IPV4-Adresse im lokelen Netzwerk, die ins Internet geroutet werden sollen, vom Router so umgeschrieben werden, dass die private Absender-IP jedes Paketes durch die \"offentliche IP-Adresse des Routers ersetzt wird. Erh\"alt der Router Antwortpakete aus dem Internet die an diesen adressiert sind, schreibt er die Empf\"anger-IP wieder auf die private IP-Adresse des Netzwerkger\"ates um un leitet es dann weiter. Die folgende Grafik soll dieses illustrieren:
 
@@ -183,18 +183,68 @@ In einigen Szenarien, in denen weniger komplexe, verbindungsorientierte Protokol
 Zwar kann dem zum Beispiel teilweise durch den Einsatz von spezifischen Proxy-Diensten auf dem Router f\"ur jedes einzelne Protokoll entgegen gewirkt werden, jedoch erh\"ot dieses Vorgehen die Komplexit\"at und den Verwaltungs- und Wartungsaufwand f\"ur die betreffenden Router.
 
 \subsection{Ineffizienz in IPv4}
--Sinnlose Berechnung von Pr\"ufsummen
--fixe Header
+Einige Design-Entscheidungen bei der Entwicklung von IPv4 haben sich als ineffizient erwiesen. Beispielhaft sei hier die Verwendung einer Prüfsumme für den Paketheader genannt. Jedes mal wenn ein IPv4-Paket verändert wird muss die Prüfsumme des Paketheaders neu berechnet werden. Vor allem bei Netzwerkgeräten, die hohe Datendurchsätze bewältigen sollen, beispielsweise die Core-Router von Internet Service Providern, sorgt das für Ressourcenengpässe beziehungsweise aufwändigere und damit teurere Hardware.
+
+Fixe Header der IPv4 Pakete sind unter mehreren Gesichtspunkten von Nachteil, da sie nicht nur die Flexibilität in der Verwendung des IPv4 Protokolls einschränken, sondern durch ihre fixe Größe auch eine Entlastung durch Weglassen nicht benötigter Teile des Paketheaders eine Steigerung der Effizienz verhindern.  
+
+Ein weiteres Effizienzproblem bei der Verwendung von IPv4 ist der im Laufe der Zeit stark angewachsene Umfang der Routingtabellen. Wünschenswert ist, dass der Umfang der Routingtabellen möglichst gering bleibt, um die Router im Internet so gut wie möglich zu entlasten. Durch die immer problematischere Adressknappheit im IPv4-Adressraum ist auch eine immer stärkere Segmentierung der IPv4-Adressen und IPv4-Adressbereiche zu beobachten mit der Konsequenz immer stärker anwachsender Routingtabellen in den Routern.    
 
 \section{\"Uberblick zu IPv6}
-Hier beginnt der zweite Hauptteil des Belegs.
- 
+Nachdem im voran gegangenen Kapitel viele der Nachteile von IPv4 erwähnt wurden, sollen nun im Folgenden die wichtigsten Neuerungen von IPv6 vorgestellt werden. 
+
+\subsection{Gr\"o{\ss}e  des Adressraums}
+
+Offenkundigste Neuerung von IPv6 ist die Erweiterung des Adressraums auf 128 Bit. Mit einem 128 Bit breiten Adressraum lassen sich \\
+$2^{128} = 340.282.366.920.938.463.463.374.607.431.768.211.456$ individuelle Adressen bilden. Vergleichweise gering fällt der32 Bit breite IPv4-Adressraum aus, denn hier lassen sich "`nur"' $2^{32} = 4.294.967.296$ individuelle Adressen bilden. 
+
+Bestand eine IPv4-Adresse aus 4 durch einen Dezimalpunkt getrennten Ziffern mit Werten von jeweils zwischen 0 und 255, also zum Beispiel 85.114.130.113 
+
+Von den $2^{128}$ IPv6-Adressen sind laut \cite[RFC5156]{rfc5156}bestimmte Adressbereiche für besondere Aufgaben reserviert, von denen nachfolgend beispielhaft einige genannt seien.
+
+%\vspace*{1cm}
+%%\begin{longtable}{p{34mm}>{\columncolor[gray]{0.97}}p{33mm}p{33mm}>{\columncolor[gray]{0.97}}p{33mm}}\rowcolor[gray]{.9}Funktion & \textbf{IPCop} & \textbf{IPFire} &\textbf{pfSense}\\
+\begin{longtable}{p{24mm}>{
+	\columncolor[gray]{0.97}}p{48mm}p{65mm}>{\columncolor[gray]{0.97}}p{33mm}}
+	\rowcolor[gray]{.9}\textbf{Adressprefix} & \textbf{Bezeichnung laut IETF} & \textbf{Beschreibung} \\
+		::1/128 & Node scoped unicast & sollen nicht im Internet auftauchen\\
+		\rowcolor[gray]{.95} ::FFFF:0:0/96 & IPv4 mapped adress & IPv4 gemappte Adresse\\
+\caption{LautRFC 5161 vordefinierte Adressprefixe in IPv6}
+\label{LautRFC 5161 vordefinierte Adressprefixe in IPv6}
+\end{longtable}
+
+
 \section{L\"osungsans\"atze in IPv6 zu den Problemen mit IPv4}
-Hier beginnt der erste Unterabschnitt des zweiten Hauptteils.
+Nachdem im voran gegangenen 
  
-\subsection{Zwischenüberschrift}
-Hier beginnt der zweite Unterabschnitt des zweiten Hauptteils.
- 
+\subsection{Beseitigung der Adressknappheit auf absehbare Zeit}
+Durch den 128 Bit gro{\ss}en Adressraum und der damit verbundenen enormen Menge an zur Verf\"ugung stehenden Adressen sollten der Menschheit f\"ur die n\"achsten Jahrzehnte hinreichend viele IPv6-Adressen zur Verfügung stehen.  
+
+
+\subsection{Verkleinerung der Routingtabellen}
+In den Standards zu IPv6 ist vorgesehen, dass jedem Kunden mindestens ein /64-Netz zugeteilt wird. Indem man Kunden komplette Netze zuteilt und die Adressverteilung dem Kunden, beziehungsweise dessen Router selbst überlässt, schrumpft der Umfang der Routingtabellen, die öffentliche Router im Internet vorhalten müssen, erheblich. die folgende Grafik, die der Website unter \cite{ipv4v6map} entliehen ist.
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[width=1\hsize]{./images/ipv4v6map.png}
+ \end{center}
+\caption[Visuelle Darstellung des Umfangs der Routingtabellen in IPv4 und IPv6, Quelle: \url{http://greenbyte.ch/wp-content/uploads/2012/08/ipv4-ipv6.gif?cf3116}]{\label{ipv4v6map}Visuelle Darstellung des Umfangs der Routingtabellen in IPv4 und IPv6, Quelle: \url{http://greenbyte.ch/wp-content/uploads/2012/08/ipv4-ipv6.gif?cf3116}}
+\end{figure}
+
+
+
+
+
+
+
+\section{IPv6 heute - Möglichkeiten für Anwender und Administratoren}
+2 M\"oglichkeiten: IPv6 nativ vom Provider oder per Tunnel
+
+\subsection{IPv6-Konnektivit\"at nativ vom ISP}
+
+\subsection{IPv6-Konnektivit\"at per Tunnel}
+
+
+
 \section{Zusammenfassung und Ausblick}
 Dies ist der Schlussteil.
 %Beginn einer neuen Seite
@@ -211,13 +261,22 @@ abrufbar am 03.03.2014
 \bibitem{ianaipv4list} \url{https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.txt}\\
 abrufbar am 05.03.2014
 
-\bibitem{rfcnat} RFC1631 - The IP Network Address Translator\\
+\bibitem{rfc1631} RFC1631 - The IP Network Address Translator\\
 \url{https://www.ietf.org/rfc/rfc1631.txt}\\
 abrufbar am 06.03.2014
 
-\bibitem{rfcdhcp} RFC2131 - Dynamic Host Configuration Protocol\\
+\bibitem{rfc2131} RFC2131 - Dynamic Host Configuration Protocol\\
 \url{http://tools.ietf.org/html/rfc2131}\\
 abrufbar am 05.03.2014
+
+\bibitem{ipv4v6map} \"Ubersichtsgrafik zum Umfang der Routingtabell f\"ur IPv4 und IPv6\\
+\url{http://greenbyte.ch/wp-content/uploads/2012/08/ipv4-ipv6.gif?cf3116}\\
+abrufbar am 19.03.2014
+
+\bibitem{rfc5156} RFC5156 - Special-Use IPv6 Addresses \\
+\url{http://tools.ietf.org/html/rfc5156}\\
+abrufbar am 19.03.2014
+
 
 \end{thebibliography}
  
