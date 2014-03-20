@@ -50,7 +50,12 @@ pdfstartpage=3, pdfstartview=FitH,]{hyperref} %Verlinkungen
 %\SetWatermarkLightness{0.9}			% wasserzeichen-kontrast
 %\SetWatermarkScale{2.5}				% wasserzeichen-zeichengroe\ss{}e
 
-
+%%%% mathemathische Formeln zentrieren und vom Text absetzen mittels \[ E = mc^2 \] anstatt $ E = mc^2 $ %%%%
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsbsy}
+\usepackage{amssymb}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \definecolor{Navy}{rgb}{0,0,0.5}
 \definecolor{Gray}{gray}{0.5}
@@ -139,7 +144,8 @@ marcel.kirbst@htwk-leipzig.de\\
  
 \section{Einleitung}
 Dieser Beleg befasst sich mit der Vorstellung der Protokollfamilie IPv6. Neben einem kompakten Überblick über IPv6 soll auf die Notwendigkeit sowie die Vorzüge von IPv6 im Vergleich zu IPv4, der derzeit weltweit am meisten im Internet genutzten Protokollfamilie, eingegangen werden.
- 
+
+\clearpage
 \section{Warum IPv6 ?}
 Das Internet ist heute überall im täglichen Leben präsent und wird von der UN inzwischen zu den Menschenrechten gezählt.\cite{uninet} Die im Internet heute noch am häufigsten verwendete Protokollfamilie ist IPv4. Wie der folgende Abschnitt darlegt, ist die weitere Verwendung von IPv4 aber mit immer mehr Problemen behaftet.
 
@@ -189,6 +195,9 @@ Fixe Header der IPv4 Pakete sind unter mehreren Gesichtspunkten von Nachteil, da
 
 Ein weiteres Effizienzproblem bei der Verwendung von IPv4 ist der im Laufe der Zeit stark angewachsene Umfang der Routingtabellen. Wünschenswert ist, dass der Umfang der Routingtabellen möglichst gering bleibt, um die Router im Internet so gut wie möglich zu entlasten. Durch die immer problematischere Adressknappheit im IPv4-Adressraum ist auch eine immer stärkere Segmentierung der IPv4-Adressen und IPv4-Adressbereiche zu beobachten mit der Konsequenz immer stärker anwachsender Routingtabellen in den Routern.    
 
+
+
+\clearpage
 \section{\"Uberblick zu IPv6}
 Nachdem im voran gegangenen Kapitel viele der Nachteile von IPv4 erwähnt wurden, sollen nun im Folgenden die wichtigsten Neuerungen von IPv6 vorgestellt werden. 
 
@@ -197,27 +206,50 @@ Nachdem im voran gegangenen Kapitel viele der Nachteile von IPv4 erwähnt wurden
 Offenkundigste Neuerung von IPv6 ist die Erweiterung des Adressraums auf 128 Bit. Mit einem 128 Bit breiten Adressraum lassen sich \\
 $2^{128} = 340.282.366.920.938.463.463.374.607.431.768.211.456$ individuelle Adressen bilden. Vergleichweise gering fällt der32 Bit breite IPv4-Adressraum aus, denn hier lassen sich "`nur"' $2^{32} = 4.294.967.296$ individuelle Adressen bilden. 
 
-Bestand eine IPv4-Adresse aus 4 durch einen Dezimalpunkt getrennten Ziffern mit Werten von jeweils zwischen 0 und 255, also zum Beispiel 85.114.130.113 
+Bestand eine IPv4-Adresse aus 4 durch einen Dezimalpunkt getrennten Ziffern mit Werten von jeweils zwischen 0 und 255, also zum Beispiel 85.114.130.113, musste für IPv6 mit seinen 128 Bit großen Adressen ein neues Konzept entwickelt werden.
+Der Ziffernbereich umfasst jetzt den Bereich aller Hexadezimalziffern, also 0 bis 9 und A bis F. Bis zu vier Hexadezimalziffern werden zu einem Block zusammen gefasst, wobei führende Nullen entfallen können. Acht dieser Blöcke, welche durch Doppelpunkte von einander abgegrenzt werden, bilden eine gültige IPv6-Adresse, die vollständig ausgeschrieben  beispielsweise so aussehen kann:  \[ 2001:41d0:0001:f7bb:0000:0000:0000:0001 \]
 
-Von den $2^{128}$ IPv6-Adressen sind laut \cite[RFC5156]{rfc5156}bestimmte Adressbereiche für besondere Aufgaben reserviert, von denen nachfolgend beispielhaft einige genannt seien.
+Um den Umgang mit IPv6-Adressen komfortabler zu gestalten, gibt es mehrere Möglichkeiten, IPv6-Adressen verkürzt darzustellen. So müssen, wie bereits erwähnt, führende Nullen innerhalb eines Block nicht zwingend angegeben werden. Weiterhin ist es pro IPv6-Adresse möglich, einen Bereich aus Nullen, der sich über mehrere Blöcke erstrecken kann, wegzulassen und stattdessen nur die Doppelpunkte am Beginn und dem Ende dieses Null-Bereiches darzustellen. Es ist jedoch zu beachten das pro IPv6-Adresse jeweils immer nur ein Nullbereich weggelassen werden darf, da die IPv6-Adresse sonst nicht mehr eineindeutig wäre. Durch Anwendung dieser Konventionen lässt sich die oben genannte, voll ausgeschrieben IPv6-Adresse
+\[ 2001:41d0:0001:f7bb:0000:0000:0000:0001 \]
+nur viel kürzer, jedoch trotzdem eineindeutig darstellen:
+ \[ 2001:41d0:1:f7bb::1 \]
+ 
 
-%\vspace*{1cm}
-%%\begin{longtable}{p{34mm}>{\columncolor[gray]{0.97}}p{33mm}p{33mm}>{\columncolor[gray]{0.97}}p{33mm}}\rowcolor[gray]{.9}Funktion & \textbf{IPCop} & \textbf{IPFire} &\textbf{pfSense}\\
+\subsection{mehrere IPv6-Adressen pro Netzwerkschnittstelle}
+
+Ein Umstand, der in IPv4 oft zu Problemen f\"uhrte ist, dass pro aktiver Netzwerkschnittstelle nur eine IPv4-Adresse zugewiesen werden kann. Soll einem Netzwerkclient zum Beispiel dynamisch eine IPv4-Adresse zugewiesen werden, kann der Client mit dem Server (und umgekehrt ) nur \"uber Broadcast-Adressen kommunizieren, bis der Client eine IPv4-Adresse zugewiesen bekommen hat.
+
+Ein fester und grundlegender Umstand vom IPv6 ist die Tatsache, das jede Netzwerkschnittstelle mit mehreren IPv6-Adressen umgehen k\"onnen muss. Sobald eine Netzwerkschnittstelle in einem IPv6-f\"ahigem System den betriebsbereiten Zustand erreicht, ist ihr schon mindestens eine IPv6-Adresse zugewiesen. Dabei handelt es sich um die so genannte Link-Local-Adresse. Diese ist nur im lokalen Netzwerkkontext g\"ultig und wird unter anderem aus der MAC-Adresse der jeweiligen Netzwerkschnittstelle unter Zuhilfenahme von Zufalls-Algorithmen gebildet. Mit dieser Link-Local-Adresse kann ein Netzwerkclient 
+
+\subsection{spezielle IPv6-Adressen}
+
+Von den $2^{128}$ IPv6-Adressen sind laut \cite[RFC5156]{rfc5156}bestimmte Adressbereiche für besondere Aufgaben reserviert, von denen nachfolgend beispielhaft einige genannt seien. 
+
 \begin{longtable}{p{24mm}>{
 	\columncolor[gray]{0.97}}p{48mm}p{65mm}>{\columncolor[gray]{0.97}}p{33mm}}
 	\rowcolor[gray]{.9}\textbf{Adressprefix} & \textbf{Bezeichnung laut IETF} & \textbf{Beschreibung} \\
-		::1/128 & Node scoped unicast & sollen nicht im Internet auftauchen\\
-		\rowcolor[gray]{.95} ::FFFF:0:0/96 & IPv4 mapped adress & IPv4 gemappte Adresse\\
+		::1/128 & Node-Scoped Unicast - loopback address & Lokale Loopback-Adresse (\"ahnlich 127.0.0.1 in IPv4), sollten nicht im Internet auftauchen\\
+		\rowcolor[gray]{.95} ::1/128 & Node-Scoped Unicast - unspecified address & bisher unpezifiziert (Stand RFC5156 von April 2008 )\\
+		::FFFF:0:0/96 & IPv4 mapped adress & IPv4 gemappte Adressen. Adressen dieses Typs sollten im \"offentlichen Internet nicht auftauchen.\\
+		\rowcolor[gray]{.95} ::<ipv4-address>/96 & IPv4-Compatible Addresses & Adressbereich um IPv4-Adressen für andere IPv6-Ger\"ate kompatibel einzubetten \\  
 \caption{LautRFC 5161 vordefinierte Adressprefixe in IPv6}
 \label{LautRFC 5161 vordefinierte Adressprefixe in IPv6}
 \end{longtable}
 
 
+
+
+\clearpage
 \section{L\"osungsans\"atze in IPv6 zu den Problemen mit IPv4}
-Nachdem im voran gegangenen 
+In diesem Kapitel sollen einige Vorz\"uge von IPv6 angef\"uhrt werden.
  
 \subsection{Beseitigung der Adressknappheit auf absehbare Zeit}
 Durch den 128 Bit gro{\ss}en Adressraum und der damit verbundenen enormen Menge an zur Verf\"ugung stehenden Adressen sollten der Menschheit f\"ur die n\"achsten Jahrzehnte hinreichend viele IPv6-Adressen zur Verfügung stehen.  
+
+\subsection{vereinfachte Netzwerkwartung}
+
+Unerfahrene Nutzer m\"ussen viel weniger administrativ t\"atig werden als in IPv4. Somit sinkt auch die Fehlerquote durch Fehlkonfigurationen. Beispielsweise m\"ussen Router nicht mehr von Hand konfiguriert werden. In IPv6 existieren so genannte Router-Advertisments. Wenn ein Netzwerkclient in einem IPv6-Netzwerk benachbarte Router anfragt, so m\"ussen sich laut Standard alle Router in diesem Netzwerk mit einem Router-Advertisment dem Netzwerkclient gegen\"uber bekannt machen. Im folgenden soll ein Screenshot die Technik illustrieren:
+
 
 
 \subsection{Verkleinerung der Routingtabellen}
@@ -225,17 +257,43 @@ In den Standards zu IPv6 ist vorgesehen, dass jedem Kunden mindestens ein /64-Ne
 
 \begin{figure}[htb]
 \begin{center}
- \includegraphics[width=1\hsize]{./images/ipv4v6map.png}
+ \includegraphics[width=.7\hsize]{./images/ipv4v6map.png}
  \end{center}
 \caption[Visuelle Darstellung des Umfangs der Routingtabellen in IPv4 und IPv6, Quelle: \url{http://greenbyte.ch/wp-content/uploads/2012/08/ipv4-ipv6.gif?cf3116}]{\label{ipv4v6map}Visuelle Darstellung des Umfangs der Routingtabellen in IPv4 und IPv6, Quelle: \url{http://greenbyte.ch/wp-content/uploads/2012/08/ipv4-ipv6.gif?cf3116}}
 \end{figure}
 
+\clearpage
+\subsection{flexible Paketheader in IPv6}
+ Bei der Verwendung von IPv6 existieren keine statischen Paketheader mehr, wie es bei der Verwendung von IPv4 der Fall ist. IPv6-Paketheader haben zwar eine fixe Gr\"o{\ss} von 40 Byte, lassen sich je nach Bedarf flexibel durch so genannte "Extensions Header" erweitern. 
+Ein Paketheader in IPv6 besteht aus den Feldern 
+\begin{itemize}
+	\item IP-Version (4 Bit)
+	\item Traffic Class (8 Bit)
+	\item Flow Label (20 Bit)
+	\item Payload Length (16 Bit)
+	\item \textit{Next Header} (8 Bit)
+	\item Hop Limit (8 Bit)
+	\item Source Address (128 Bit)
+	\item Destination Address (128 Bit). 
+\end{itemize}
 
+Die Gesamtgr\"o{\ss}e eines IPv6-Pakets betr\"agt also 320 Bit, was 40 Byte entspricht. Im Feld Next Header können dann gegebenenfalls Erweiterungsheader angegeben werden.  
 
+Ein solcher Erweiterungsheader besteht dann aus den Feldern:
+\begin{itemize}
+ 	\item Hop by Hop Options (variable Gr\"o{\ss}e)
+	\item  Routing  (variable Gr\"o{\ss}e)
+	\item Fragment (64 Bit)
+	\item Authentication Header (variable Gr\"o{\ss}e)
+	\item Encapsulating Security Payload  (variable Gr\"o{\ss}e)
+	\item Destination Options  (variable Gr\"o{\ss}e)
+	\item Mobility  (variable Gr\"o{\ss}e) und 
+	\item No Next Header, welches das Ende des Erweiterungsheaders anzeigt. 
+\end{itemize}
 
+Somit ist sichergestellt das die IPv6-Header so klein wie möglich und gleichzeitig so gro{\ss} wie unbedingt nötig sein müssen  
 
-
-
+\clearpage
 \section{IPv6 heute - Möglichkeiten für Anwender und Administratoren}
 2 M\"oglichkeiten: IPv6 nativ vom Provider oder per Tunnel
 
@@ -244,7 +302,7 @@ In den Standards zu IPv6 ist vorgesehen, dass jedem Kunden mindestens ein /64-Ne
 \subsection{IPv6-Konnektivit\"at per Tunnel}
 
 
-
+\clearpage
 \section{Zusammenfassung und Ausblick}
 Dies ist der Schlussteil.
 %Beginn einer neuen Seite
