@@ -143,7 +143,10 @@ marcel.kirbst@htwk-leipzig.de\\
 \pagestyle{plain}
  
 \section{Einleitung}
-Dieser Beleg befasst sich mit der Vorstellung der Protokollfamilie IPv6. Neben einem kompakten Überblick über IPv6 soll auf die Notwendigkeit sowie die Vorzüge von IPv6 im Vergleich zu IPv4, der derzeit weltweit am meisten im Internet genutzten Protokollfamilie, eingegangen werden.
+Dieser Beleg befasst sich mit der Vorstellung der Protokollfamilie IPv6. Neben einem kompakten Überblick über IPv6 soll auf die Notwendigkeit sowie die Vorzüge von IPv6 im Vergleich zu IPv4, der derzeit weltweit am meisten im Internet genutzten Protokollfamilie, eingegangen werden.\\
+\\
+
+Auch wenn klar sein muss, dass es im Umfang eines solchen Beleges nicht ann\"ahrend abschlie{\ss}end m\"oglich ist, dass Thema IPv6 ersch\"opfend vorzustellen, so hofft er Autor dem geneigten Leser doch einen \"Uberblick \"uber die Funktionen und Vorteile von IPv6 bieten zu k\"onnen.
 
 \clearpage
 \section{Warum IPv6 ?}
@@ -219,7 +222,7 @@ nur viel kürzer, jedoch trotzdem eineindeutig darstellen:
 
 Ein Umstand, der in IPv4 oft zu Problemen f\"uhrte ist, dass pro aktiver Netzwerkschnittstelle nur eine IPv4-Adresse zugewiesen werden kann. Soll einem Netzwerkclient zum Beispiel dynamisch eine IPv4-Adresse zugewiesen werden, kann der Client mit dem Server (und umgekehrt ) nur \"uber Broadcast-Adressen kommunizieren, bis der Client eine IPv4-Adresse zugewiesen bekommen hat.
 
-Ein fester und grundlegender Umstand vom IPv6 ist die Tatsache, das jede Netzwerkschnittstelle mit mehreren IPv6-Adressen umgehen k\"onnen muss. Sobald eine Netzwerkschnittstelle in einem IPv6-f\"ahigem System den betriebsbereiten Zustand erreicht, ist ihr schon mindestens eine IPv6-Adresse zugewiesen. Dabei handelt es sich um die so genannte Link-Local-Adresse. Diese ist nur im lokalen Netzwerkkontext g\"ultig und wird unter anderem aus der MAC-Adresse der jeweiligen Netzwerkschnittstelle unter Zuhilfenahme von Zufalls-Algorithmen gebildet. Mit dieser Link-Local-Adresse kann ein Netzwerkclient 
+Ein fester und grundlegender Umstand vom IPv6 ist die Tatsache, das jede Netzwerkschnittstelle mit mehreren IPv6-Adressen umgehen k\"onnen muss. Sobald eine Netzwerkschnittstelle in einem IPv6-f\"ahigem System den betriebsbereiten Zustand erreicht, ist ihr schon mindestens eine IPv6-Adresse zugewiesen. Dabei handelt es sich um die so genannte Link-Local-Adresse. Diese ist nur im lokalen Netzwerkkontext g\"ultig und wird unter anderem aus der MAC-Adresse der jeweiligen Netzwerkschnittstelle unter Zuhilfenahme von Zufalls-Algorithmen gebildet. Mit dieser Link-Local-Adresse kann ein Netzwerkclient mit anderen lokalen Netzwerkteilnehmern kommunizieren und weitere Netzwerkparameter austauschen und aushandeln.
 
 \subsection{spezielle IPv6-Adressen}
 
@@ -253,12 +256,12 @@ Nachdem sich ein Netzwerkger\"at eine Link-Lokal-Adresse zugewiesen hat, kann di
 
 \clearpage
 \section{L\"osungsans\"atze in IPv6 zu den Problemen mit IPv4}
-In diesem Kapitel sollen einige Vorz\"uge von IPv6 angef\"uhrt werden.
+In diesem Kapitel sollen einige Vorz\"uge von IPv6 angef\"uhrt werden, die Probleme in IPv4 l\"osen.
  
 \subsection{Beseitigung der Adressknappheit auf absehbare Zeit}
 Durch den 128 Bit gro{\ss}en Adressraum und der damit verbundenen enormen Menge an zur Verf\"ugung stehenden Adressen sollten der Menschheit f\"ur die n\"achsten Jahrzehnte hinreichend viele IPv6-Adressen zur Verfügung stehen.  Um die enorme Dimension des Adressraums von IPv6 zu verdeutlichen, soll ein kurzes Rechenbeispiel dienen:\\
 \\
-Die Oberfläche der Erde umfasst grob geschätzt 510 Millionen Quadratkilometer, also $510.000.000.000.000.000.000 mm^2$ . Stellt man diese Fl\"ache der Anzahl der m\"oglichen IPv6-Adressen von $2^{128} = 340.282.366.920.938.463.463.374.607.431.768.211.456$ gegen\"ueber kommt man zu dem Ergebnis, das jedem Quadratmillimeter der Erdoberfl\"ache immernoch theoretisch $667.220.327.295.957.771 $ IPv6-Adressen zugewiesen werden k\"onnten. Praktisch betrachtet ist diese Zahl nicht ganz korrekt, da wie im voran gegangenen Kapitel beschrieben, bestimmte Adressen im IPv6-Adressraum reserviert sind. Dieser Vergleich soll dem Leser aber dennoch verdeutlichen das jedem Quadratmillimeter der Erdoberfl\"ache circa. 155 Millionen mal mehr IPv6-Adressen zugewiesen werden k\"onnen, als im gesamten IPv4-Adressraum (der ja nur 32 Bit gro{\ss}) ist zur Verf\"ugung stehen.
+Die Oberfläche der Erde umfasst grob geschätzt 510 Millionen Quadratkilometer, also $510.000.000.000.000.000.000 mm^2$ . Stellt man diese Fl\"ache der Anzahl der m\"oglichen IPv6-Adressen von $2^{128} = 340.282.366.920.938.463.463.374.607.431.768.211.456$ gegen\"ueber kommt man zu dem Ergebnis, das jedem Quadratmillimeter der Erdoberfl\"ache immernoch theoretisch $667.220.327.295.957.771 $ IPv6-Adressen zugewiesen werden k\"onnten. Praktisch betrachtet ist diese Zahl nicht ganz korrekt, da wie im voran gegangenen Kapitel beschrieben, bestimmte Adressen im IPv6-Adressraum reserviert sind. Dieser Vergleich soll dem Leser aber dennoch verdeutlichen das jedem Quadratmillimeter der Erdoberfl\"ache circa. 155 Millionen mal mehr IPv6-Adressen zugewiesen werden k\"onnen, als im gesamten IPv4-Adressraum (der ja nur 32 Bit gro{\ss}) ist zur Verf\"ugung stehen. Die folgende Grafik soll den enormen Umfang an IPv6-Adressen im Vergleich zum Umfang der IPv4-Adressen f\"ur den Leser noch einmal illustrieren:
 
 \clearpage
 
@@ -266,7 +269,7 @@ Die Oberfläche der Erde umfasst grob geschätzt 510 Millionen Quadratkilometer,
 \begin{center}
  \includegraphics[width=1\hsize]{./images/earth.png}
  \end{center}
-\caption[Erde, Quelle: Autor,]{\label{earth}Erde}
+\caption[Illustration: Mengenvergleich IPv4-Adressen f\"ur die gesamte Erdbev\"olkerung zu IPv6-Adressen pro Quadratmillimeter Erdoberfl\"ache. Quelle Illustration: Autor, Quelle Erdfoto: \url{http://upload.wikimedia.org/wikipedia/commons/6/6f/Earth_Eastern_Hemisphere.jpg}]{\label{earth}Illustration: Mengenvergleich IPv4-Adressen f\"ur die gesamte Erdbev\"olkerung zu IPv6-Adressen pro Quadratmillimeter Erdoberfl\"ache.  Quelle Illustration: Autor, Quelle Erdfoto: \url{http://upload.wikimedia.org/wikipedia/commons/6/6f/Earth_Eastern_Hemisphere.jpg}}
 \end{figure}
 
 \subsection{vereinfachte Netzwerkwartung}
@@ -321,12 +324,15 @@ Somit ist sichergestellt das die IPv6-Header so klein wie möglich und gleichzei
 Wenn IPv6 den Vorgaben entsprechend betrieben wird, umfasst das unter anderem, dass jedem Teilnehmer im Internet von seinem Internet Service Provider ein 64 Bit gro{\ss}er  IPv6-Adressblock zugeteilt wird. Im Detail wird dem Kunden nur noch ein Adressprefix von 64 Bit zugeteilt. Wie der Kunde beziehungsweise dessen Netzwerkger\"ate die restlichen 64 Bit im lokalen Netzwerk verteilen, ist dem Kunden beziehungsweise dessen Netzwerkger\"aten  \"uberlassen. Ein gro{\ss}er Vorteil ist hierbei, das jede einzelne IPv6-Adresse aus diesem 64 Bit gro{\ss}em Adressblock global routbar ist und somit nicht mehr die Notwenigkeit besteht Technologien wie NAT einsetzen zu m\"ussen, um nur lokal g\"ultige IPv4-Adressen auf eine einzelne, global g\"ultige IPv4-Adresse des Routers abzubilden.\\
 \\
 
-Ein Router, der im heimischen Netzwerk die Schnittstelle zum Internet darstellt, ist nun nicht mehr, wie bei IPv4, gezwungen die Netzwerkpakete f\"ur jedes Netzwerkger\"at im lokalen Netzwerk per NAT zu modifizieren. Da jedes Netzwerkger\"at bei Verwendung von IPv6 seine eigene global g\"ultige Adresse hat, ist eine eineindeutige Zuordnung der eingehenden und ausgehenden Netzwerkpakete zu den Netzwerkger\"aten f\"ur den Router ohne Probleme m\"oglich.  Folgende Grafik soll beispielhaft den Sachverhalt verdeutlichen:\\
-\\
-BILD
+Ein Router, der im heimischen Netzwerk die Schnittstelle zum Internet darstellt, ist nun nicht mehr, wie bei IPv4, gezwungen die Netzwerkpakete f\"ur jedes Netzwerkger\"at im lokalen Netzwerk per NAT zu modifizieren. Da jedes Netzwerkger\"at bei Verwendung von IPv6 seine eigene global g\"ultige Adresse hat, ist eine eineindeutige Zuordnung der eingehenden und ausgehenden Netzwerkpakete zu den Netzwerkger\"aten f\"ur den Router ohne Probleme m\"oglich.  Folgende Grafik soll beispielhaft den Sachverhalt verdeutlichen:
 
-
-
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[width=.8\hsize]{./Zeichnungen/IPv6.pdf}
+ \end{center}
+\caption[Beispielhafte Standardkonfiguration eines Internetanschlu\ss{} mit nativer IPv6-Konnektivit\"at, Quelle: Autor, verwendete Symbole unterliegen der
+GPL]{\label{stdinet}Beispielhafte Standardkonfiguration eines Internetanschlu\ss{} mit nativer IPv6-Konnektivit\"at.}
+\end{figure}
 
 \clearpage
 \section{IPv6 heute - Möglichkeiten für Anwender und Administratoren}
@@ -358,16 +364,13 @@ Ein solcher Tunnel l\"sst sich an einem Router oder auch direkt in einem Netzwer
 \caption[Webseite zum Testen der IPv6-Konnektivit\"at: \url{http://test-ipv6.com/}]{\label{testipv6}Webseite zum Testen der IPv6-Konnektivit\"at: \url{http://test-ipv6.com/}}
 \end{figure}
 
-
-
-
 \clearpage
 \section{Zusammenfassung und Ausblick}
-Dies ist der Schlussteil.
-%Beginn einer neuen Seite
+Allein durch die immens fortgeschrittene Knappheit an IPv4-Adressen ist ersichtlich, dass der Umstieg zu IPv6 unumg\"anglich ist. Umso schmerzlicher ist im Jahr 2014 festzustellen, wie wenig verbreitet IPv6 noch immer ist. Das gilt f\"ur Internet Service Provider genauso, wie f\"ur Weltkonzerne wie Apple oder IBM, deren Webpräsenzen bis heute nicht über IPv6-Konnektivit\"at verf\"ugen. Es gibt aber auch positive Beispiele, wie beispielsweise der deutsche Hardwarehersteller \url{http://www.avm.de} oder \url{http://www.heise.de}. Es bleibt zu hoffen das viele Menschen verstehen, dass IPv6 nicht nur den verf\"ugbaren Adressraum signifikant erh\"oht, sondern auch viele andere technische Unzul\"anglichkeiten ausmerzt, die im Laufe der Jahre bei der Verwendung von IPv4 zu Tage getreten sind. Der Autor ist der Meinung, dass durch hinreichend viele aktive IPv6-Nutzer auch gr\"o{\ss}ere Konzerne, wie auch \"offentliche Einrichtungen (die HTWK ist hier leider auch kein positives Beispiel) endlich dazu \"uber gehen, IPv6 nicht mehr so "'stiefm\"utterlich"` zu behandeln, wie es vielerorts bis Heute leider der Fall zu sein scheint. 
+
+
 \clearpage
- 
-\section{Literaturverzeichnis}
+ \section{Literaturverzeichnis}
 
 \begin{thebibliography}{50}
 
