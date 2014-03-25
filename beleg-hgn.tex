@@ -164,15 +164,15 @@ Au\ss{}erdem ist zu erw\"ahnen das sich die IPv4-Adressen in einem Netzwerksegme
 Ein weiterer Umstand der die Problematik versch\"arft ist, dass die Zuteilung von IPv4-Adressbl\"ocken durch die IANA endg\"ultig ist. Eine M\"oglichkeit IPv4-Adressen zur\"uckzuziehen ist nicht vorgesehen. 
 
 
-\subsubsection{Konfiguration von Ger\"aten in IPv4}
+\subsubsection{Konfiguration von Netzwerkger\"aten  unter Verwendung von IPv4}
 
 Anf\"anglich musste jedes neue Netzwerkger\"at von Hand durch den Benutzer konfiguriert werden um im Netzwerk kommunizieren zu k\"onnen. Das umfasst mindestens die Vergabe einer IPv4-Adresse mit der zugeh\"origen Netzmaske. Soll das Ger\"at au\ss{}erdem noch mit dem Internet kommunizieren k\"onnen ist die Angabe der IPv4-Adresse des Routers in diesem Netz sowie mindestens eines DomainNameService-Servers (Abk\"urzung: DNS-Server) erforderlich. 
 
-Um unerfahrenen beziehungsweise unachtsamen Benutzern diese potentielle Fehlerquelle zu ersparen, wurde eine Technik namens Dynamic Host Configuration Protocol (Abk\"urzung: DHCP) \cite[RFC2131]{rfc2131} spezifiziert, die es erm\"oglicht Konfiguration eines Netzwerkg\"er\"ates ohne Eingriff des Benutzers, nur durch einen DHCP-Server, welcher zustandsbasiert arbeitet,  in diesem Netzwerksegment vorzunehmen. Leider arbeitet auch dieser Mechanismus nicht immer zuverl\"assig und fehlerfrei. Beispielsweise ist es f\"ur ein Netzwerkger\"at durchaus m\"oglich manuell eine IPv4-Adresse zu konfigurieren und zu verwenden die innerhalb des IPv4-Adresskontingentes liegt, der einem DHCP-Server zur Zuteilung an anfragende DHCP-Klienten zugeteilt wurde. Solche Adresskonflikte f\"uhren in der Regel zu Netzwerkproblemen.
+Um unerfahrenen beziehungsweise unachtsamen Benutzern diese potentielle Fehlerquelle zu ersparen, wurde eine Technik namens Dynamic Host Configuration Protocol (Abk\"urzung: DHCP) \cite[RFC2131]{RFC2131} spezifiziert, die es erm\"oglicht Konfiguration eines Netzwerkg\"er\"ates ohne Eingriff des Benutzers, nur durch einen DHCP-Server, welcher zustandsbasiert arbeitet,  in diesem Netzwerksegment vorzunehmen. Leider arbeitet auch dieser Mechanismus nicht immer zuverl\"assig und fehlerfrei. Beispielsweise ist es f\"ur ein Netzwerkger\"at durchaus m\"oglich manuell eine IPv4-Adresse zu konfigurieren und zu verwenden die innerhalb des IPv4-Adresskontingentes liegt, der einem DHCP-Server zur Zuteilung an anfragende DHCP-Klienten zugeteilt wurde. Solche Adresskonflikte f\"uhren in der Regel zu Netzwerkproblemen.
 
 
 \subsection{NAT}
-Network Adress Translation (Abk\"urzung: NAT) \cite[RFC1631]{rfc1631} ist eine weitere Technik, die entwickelt wurde um die Adressknappheit in IPv4 zu abzumildern. In den meisten F\"allen ist ein Netzwerkger\"at nicht direkt mit dem Internet verbunden, sondern nur Teilnehmer in einem Netzwerk. In den meisten Netzwerken werden so genannte "`private IPv4-Adressen"' genutzt um die Netzwerkger\"ate zu adressieren. Das sind IPv4-Adressen die von der IANA speziell f\"ur diesen Zweck spezifiziert wurden und aus diesem Grund auch nicht im Internet genutzt werden k\"onnen. Router im Internet verwerfen Pakete, die als Sender- oder Empf\"angeradresse eine solche private IPv4-Adresse enthalten. Private IPv4-Adressen sind alle IPv4-Adressen aus den Bl\"ocken $10.0.0.0/8$ bis $10.255.255.255/8$, $172.16.0.0/12$ bis $172.31.255.255/12$ sowie $192.168.0.0/16$ bis $192.168.255.255/16$. 
+Network Adress Translation (Abk\"urzung: NAT) \cite[RFC1631]{RFC1631} ist eine weitere Technik, die entwickelt wurde um die Adressknappheit in IPv4 zu abzumildern. In den meisten F\"allen ist ein Netzwerkger\"at nicht direkt mit dem Internet verbunden, sondern nur Teilnehmer in einem Netzwerk. In den meisten Netzwerken werden so genannte "`private IPv4-Adressen"' genutzt um die Netzwerkger\"ate zu adressieren. Das sind IPv4-Adressen die von der IANA speziell f\"ur diesen Zweck spezifiziert wurden und aus diesem Grund auch nicht im Internet genutzt werden k\"onnen. Router im Internet verwerfen Pakete, die als Sender- oder Empf\"angeradresse eine solche private IPv4-Adresse enthalten. Private IPv4-Adressen sind alle IPv4-Adressen aus den Bl\"ocken $10.0.0.0/8$ bis $10.255.255.255/8$, $172.16.0.0/12$ bis $172.31.255.255/12$ sowie $192.168.0.0/16$ bis $192.168.255.255/16$. 
 
 Die Funktion eines Routers, der NAT implementiert ist prinzipiell, dass alle Pakete von Netzwerkteilnehmen mit privater IPV4-Adresse im lokelen Netzwerk, die ins Internet geroutet werden sollen, vom Router so umgeschrieben werden, dass die private Absender-IP jedes Paketes durch die \"offentliche IP-Adresse des Routers ersetzt wird. Erh\"alt der Router Antwortpakete aus dem Internet die an diesen adressiert sind, schreibt er die Empf\"anger-IP wieder auf die private IP-Adresse des Netzwerkger\"ates um un leitet es dann weiter. Die folgende Grafik soll dieses illustrieren:
 
@@ -184,7 +184,7 @@ Die Funktion eines Routers, der NAT implementiert ist prinzipiell, dass alle Pak
 GPL]{\label{stdinet}Beispielhafte Standardkonfiguration eines Internetanschlu\ss{}.}
 \end{figure}
 
-In einigen Szenarien, in denen weniger komplexe, verbindungsorientierte Protokolle wie beispielsweise HTTP eingesetzt werden funktioniert NAT einigerma\ss{}en zufriedenstellend. In komplexeren Protokollen wie dem File Transfer Protokoll (Abk\"urzung: FTP) oder dem Session Initiaton Protokoll (Abk\"urzung: SIP), in denen zum Beispiel im Laufe der Etablierung der Kommunikation weitere Ports f\"ur die Kommunikation zwischen den Endger\"aten ausgehandelt werden m\"ussen, st\"o\ss{}t NAT aber schnell an seine Grenzen, mit der Folge das diese Protokolle sich dann nicht oder zumindest nicht zufriedenstellend einsetzen lassen.
+In einigen Szenarien, in denen weniger komplexe, verbindungsorientierte Protokolle wie beispielsweise HTTP eingesetzt werden funktioniert NAT einigerma\ss{}en zufriedenstellend. In komplexeren Protokollen wie dem File Transfer Protokoll (Abk\"urzung: FTP) oder dem Session Initiaton Protokoll (Abk\"urzung: SIP), in denen zum Beispiel im Laufe der Etablierung der Kommunikation weitere Ports f\"ur die Kommunikation zwischen den Endger\"aten ausgehandelt werden m\"ussen, st\"o{\ss}t NAT aber schnell an seine Grenzen, mit der Folge das diese Protokolle sich dann nicht oder zumindest nicht zufriedenstellend einsetzen lassen.
 
 Zwar kann dem zum Beispiel teilweise durch den Einsatz von spezifischen Proxy-Diensten auf dem Router f\"ur jedes einzelne Protokoll entgegen gewirkt werden, jedoch erh\"ot dieses Vorgehen die Komplexit\"at und den Verwaltungs- und Wartungsaufwand f\"ur die betreffenden Router.
 
@@ -223,7 +223,7 @@ Ein fester und grundlegender Umstand vom IPv6 ist die Tatsache, das jede Netzwer
 
 \subsection{spezielle IPv6-Adressen}
 
-Von den $2^{128}$ IPv6-Adressen sind laut \cite[RFC5156]{rfc5156}bestimmte Adressbereiche für besondere Aufgaben reserviert, von denen nachfolgend beispielhaft einige genannt seien. 
+Von den $2^{128}$ IPv6-Adressen sind laut \cite[RFC5156]{RFC5156}bestimmte Adressbereiche für besondere Aufgaben reserviert, von denen nachfolgend beispielhaft einige genannt seien. 
 
 \begin{longtable}{p{24mm}>{
 	\columncolor[gray]{0.97}}p{48mm}p{65mm}>{\columncolor[gray]{0.97}}p{33mm}}
@@ -236,7 +236,19 @@ Von den $2^{128}$ IPv6-Adressen sind laut \cite[RFC5156]{rfc5156}bestimmte Adres
 \label{LautRFC 5161 vordefinierte Adressprefixe in IPv6}
 \end{longtable}
 
+\subsection{automatische Netzwerkkonfiguration}
+Bei Verwendung von IPv6 ist es den Netzwerkger\"aten m\"oglich \"uber so genannte "'Neighbor Discovery Protocol"'  \cite[RFC3122]{RFC3122},  \cite[RFC4861]{RFC4861} zu erfragen ob sich Router im gleichen Netzwerksegment befinden, wie die Netzwerkclients selbst. Dazu generiert ein Netzwerkger\"at, dass in einem IPv6-Netzwerk kommunizieren m\"ochte, zuerst eine so genannt "'Link Local Adresse"'. Diese Link-Local-Adresse generiert sich das Ger\"at selbst, unter anderem aus der MAC-Adresse der betreffenden Netzwerkschnittstelle. Charakteristisch f\"ur diese Link-Local-Adressen ist, dass diese immer mit dem Prefix $fe80::$ beginnen. Eine weitere Besonderheit der G\"ultigkeitsbereich von Link-Local-Adressen, diese sind nur im aktuellen Netzwerksegment g\"ultig und werden nicht geroutet. In der Konsequenz bedeutet das, dass ein Netzwerkger\"at \"uber die Link-Local-Adresse nur mit anderen Netzwerkger\"aten kommunizieren kann, die sich im gleichen Netzwerksegment befinden. In der folgenden Grafik ist eine beispielhafte IP-Konfiguration des Autors abgebildet, die f\"ur diesen Beleg erstellt wurde.
 
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[width=1\hsize]{./images/ifconfig.png}
+ \end{center}
+\caption[IP-Konfiguration beispielhaft beim Autor, Quelle: Autor,]{\label{ifconfig}IP-Konfiguration beispielhaft beim Autor}
+\end{figure}
+
+Es wurde auf einem Laptop eine Linux-Distribution Kubuntu 13.10 installiert. Der Aufruf des Befehls \textit{ifconfig} meldet f\"ur die Netzwerkschnittstelle "'sixxs"' (Anmerkung: sixxs.net ist ein Netzwerktunnel um Internetzug\"angen ohne natives IPv6 IPv6-Konnektivit\"at zu verschaffen, siehe dazu folgendes Kaptiel) zeigt rot umrahmt die Link-Local-Adresse $fe80::8004:d600:180:2/64$, die nur lokal g\"ultig ist, sowie die global g\"utige IPv6-Adresse $2a02:8204:d600:180::2$, in der Grafik gelb umrahmt.\\
+\\
+Nachdem sich ein Netzwerkger\"at eine Link-Lokal-Adresse zugewiesen hat, kann dieses, wie bereits oben erw\"ahnt, mit allen anderen Netzwerkger\"aten im gleichen Netzwerksegemnt kommunizieren, beispielsweise um so genannte Router-Advertisments abzusetzen. Das sind Netzwerkanfragen, auf die jeder IPv6-f\"ahige Router im Netzwerksegment antworten muss. Der Router kann dann in der Antwort dem anfragenden Netzwerkger\"at seine eigene IPv6-Adresse sowie das global g\"ultige IPv6-Prefix f\"ur dieses Netzwerksegment mitteilen. Wenn dies erfolgt ist, kann sich das anfragende Netzwerkger\"at aus dem globalen Prefix eine IPv6-Adresse mit globaler G\"ultigkeit generieren, mit deren Hilfe eine vollst\"andige Netzwerkkonnektivit\"at gegeben ist. 
 
 
 \clearpage
@@ -244,7 +256,18 @@ Von den $2^{128}$ IPv6-Adressen sind laut \cite[RFC5156]{rfc5156}bestimmte Adres
 In diesem Kapitel sollen einige Vorz\"uge von IPv6 angef\"uhrt werden.
  
 \subsection{Beseitigung der Adressknappheit auf absehbare Zeit}
-Durch den 128 Bit gro{\ss}en Adressraum und der damit verbundenen enormen Menge an zur Verf\"ugung stehenden Adressen sollten der Menschheit f\"ur die n\"achsten Jahrzehnte hinreichend viele IPv6-Adressen zur Verfügung stehen.  
+Durch den 128 Bit gro{\ss}en Adressraum und der damit verbundenen enormen Menge an zur Verf\"ugung stehenden Adressen sollten der Menschheit f\"ur die n\"achsten Jahrzehnte hinreichend viele IPv6-Adressen zur Verfügung stehen.  Um die enorme Dimension des Adressraums von IPv6 zu verdeutlichen, soll ein kurzes Rechenbeispiel dienen:\\
+\\
+Die Oberfläche der Erde umfasst grob geschätzt 510 Millionen Quadratkilometer, also $510.000.000.000.000.000.000 mm^2$ . Stellt man diese Fl\"ache der Anzahl der m\"oglichen IPv6-Adressen von $2^{128} = 340.282.366.920.938.463.463.374.607.431.768.211.456$ gegen\"ueber kommt man zu dem Ergebnis, das jedem Quadratmillimeter der Erdoberfl\"ache immernoch theoretisch $667.220.327.295.957.771 $ IPv6-Adressen zugewiesen werden k\"onnten. Praktisch betrachtet ist diese Zahl nicht ganz korrekt, da wie im voran gegangenen Kapitel beschrieben, bestimmte Adressen im IPv6-Adressraum reserviert sind. Dieser Vergleich soll dem Leser aber dennoch verdeutlichen das jedem Quadratmillimeter der Erdoberfl\"ache circa. 155 Millionen mal mehr IPv6-Adressen zugewiesen werden k\"onnen, als im gesamten IPv4-Adressraum (der ja nur 32 Bit gro{\ss}) ist zur Verf\"ugung stehen.
+
+\clearpage
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[width=1\hsize]{./images/earth.png}
+ \end{center}
+\caption[Erde, Quelle: Autor,]{\label{earth}Erde}
+\end{figure}
 
 \subsection{vereinfachte Netzwerkwartung}
 
@@ -253,11 +276,12 @@ Unerfahrene Nutzer m\"ussen viel weniger administrativ t\"atig werden als in IPv
 
 
 \subsection{Verkleinerung der Routingtabellen}
-In den Standards zu IPv6 ist vorgesehen, dass jedem Kunden mindestens ein /64-Netz zugeteilt wird. Indem man Kunden komplette Netze zuteilt und die Adressverteilung dem Kunden, beziehungsweise dessen Router selbst überlässt, schrumpft der Umfang der Routingtabellen, die öffentliche Router im Internet vorhalten müssen, erheblich. die folgende Grafik, die der Website unter \cite{ipv4v6map} entliehen ist.
+In den Standards zu IPv6 ist vorgesehen, dass jedem Kunden mindestens ein /64-Netz zugeteilt wird. Indem man Kunden komplette Netze zuteilt und die Adressverteilung dem Kunden, beziehungsweise dessen Router selbst überlässt, schrumpft der Umfang der Routingtabellen, die öffentliche Router im Internet vorhalten müssen, erheblich. Die folgende Grafik, die der Website unter \cite{ipv4v6map} entliehen ist, soll diesen Umstand visualisieren.
 
 \begin{figure}[htb]
 \begin{center}
- \includegraphics[width=.7\hsize]{./images/ipv4v6map.png}
+ %%\includegraphics[width=.7\hsize]{./images/ipv4v6map.png}
+ \includegraphics[width=.5\hsize]{./images/ipv4v6map.png}
  \end{center}
 \caption[Visuelle Darstellung des Umfangs der Routingtabellen in IPv4 und IPv6, Quelle: \url{http://greenbyte.ch/wp-content/uploads/2012/08/ipv4-ipv6.gif?cf3116}]{\label{ipv4v6map}Visuelle Darstellung des Umfangs der Routingtabellen in IPv4 und IPv6, Quelle: \url{http://greenbyte.ch/wp-content/uploads/2012/08/ipv4-ipv6.gif?cf3116}}
 \end{figure}
@@ -293,13 +317,48 @@ Ein solcher Erweiterungsheader besteht dann aus den Feldern:
 
 Somit ist sichergestellt das die IPv6-Header so klein wie möglich und gleichzeitig so gro{\ss} wie unbedingt nötig sein müssen  
 
+\subsection{NAT in IPv6}
+Wenn IPv6 den Vorgaben entsprechend betrieben wird, umfasst das unter anderem, dass jedem Teilnehmer im Internet von seinem Internet Service Provider ein 64 Bit gro{\ss}er  IPv6-Adressblock zugeteilt wird. Im Detail wird dem Kunden nur noch ein Adressprefix von 64 Bit zugeteilt. Wie der Kunde beziehungsweise dessen Netzwerkger\"ate die restlichen 64 Bit im lokalen Netzwerk verteilen, ist dem Kunden beziehungsweise dessen Netzwerkger\"aten  \"uberlassen. Ein gro{\ss}er Vorteil ist hierbei, das jede einzelne IPv6-Adresse aus diesem 64 Bit gro{\ss}em Adressblock global routbar ist und somit nicht mehr die Notwenigkeit besteht Technologien wie NAT einsetzen zu m\"ussen, um nur lokal g\"ultige IPv4-Adressen auf eine einzelne, global g\"ultige IPv4-Adresse des Routers abzubilden.\\
+\\
+
+Ein Router, der im heimischen Netzwerk die Schnittstelle zum Internet darstellt, ist nun nicht mehr, wie bei IPv4, gezwungen die Netzwerkpakete f\"ur jedes Netzwerkger\"at im lokalen Netzwerk per NAT zu modifizieren. Da jedes Netzwerkger\"at bei Verwendung von IPv6 seine eigene global g\"ultige Adresse hat, ist eine eineindeutige Zuordnung der eingehenden und ausgehenden Netzwerkpakete zu den Netzwerkger\"aten f\"ur den Router ohne Probleme m\"oglich.  Folgende Grafik soll beispielhaft den Sachverhalt verdeutlichen:\\
+\\
+BILD
+
+
+
+
 \clearpage
 \section{IPv6 heute - Möglichkeiten für Anwender und Administratoren}
-2 M\"oglichkeiten: IPv6 nativ vom Provider oder per Tunnel
+Wenn man heute und in Zukunft Webinhalte \"uber IPv6 abgrufen m\"ochte, ben\"otigt man einen Internetanschluss mit IPv6-Konnektivit\"at. Es gibt zwei M\"oglichkeiten, entweder der verwendete Internet Service Provider stellt IPv6 am Internetnetanschlu{\ss} direkt zur Verf\"ugung, oder man muss selbst nachbessern. Die beiden M\"oglichkeiten werden im Folgenden n\"aher beschrieben
 
-\subsection{IPv6-Konnektivit\"at nativ vom ISP}
+\subsection{IPv6-Konnektivit\"at nativ vom Internet Service Provider}
+Falls der verwendete Internet Service Provider IPv6 nativ am verwendeten Internet Anschlu{\ss} zur Verf\"ugung stellt und auch der beziehungsweise die eingesetzten Router IPv6-f\"ahig sind, hat der Benutzer nichts weiter zu tun, als sein IPv6-f\"ahiges Netzwerkger\"at mit dem Netzwerk zu verbinden. Durch die in den voran gegangenen Kapiteln vorgestellten, fortschrittlichen Adressfindungsmechanismen in IPv6 wird vollst\"andige Netzwerkkonnektivit\"at ohne Zutun des Benutzers hergestellt.\\
+\\
+Vom Autor muss an dieser Stelle negativ angemerkt werden, dass zum derzeitigen Zeitpunkt, dass heisst im Jahr 2014, also 15 Jahre nach der finalen Verabschiedung des IPv6-Standards,  keiner der in Deutschland im Privatkundenmarkt t\"atigen Internet Service Provider in der Lage, beziehungsweise Willens ist, dem Kunden IPv6 zur Verf\"ugung zu stellen. Entweder wurde noch garnicht mit der Umstellung begonnen, oder der Prozentsatz der Kunden mit nativer IPv6-Konnektivit\"at liegt noch im unterem einstelligen Prozentbereich.\\
+\\
+Gesch\"aftskunden genie{\ss} en in der Regel den Vorzug einer vielf\"altigeren Auswahl im Bezug auf die Internet Service Provider. Es kann daher vom Autor nur angeraten werden, bei der Auswahl der zuk\"unftigen Internet Service Provider die native IPv6-Konnektivt\"t zu einem Schl\"usselkriterium zu machen.
 
 \subsection{IPv6-Konnektivit\"at per Tunnel}
+Ist der Anwender an einen Internet Service Provider gebunden, der noch kein natives IPv6 an seinem Internetanschluss zur Verf\"ugung stellt, gibt es noch die M\"glichkeit mit Hilfe eines IPv6-Tunnels IPv6-Konnektivit\"at zu erm\"oglichen. Es ist bei Anbietern wie \url{htt zutps://www.sixxs.net/} m\"glich, sich kostenfrei einen IPv6-Tunnelendpunk inklusive eines global routbaren 64 Bit gro{\ss}em IPv6-Adressblock zuteilen zu lassen. 
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[width=1\hsize]{./images/sixxs.png}
+ \end{center}
+\caption[Webseite der Anbieters \url{https://sixxs.net} f\"ur einen kostenfreien IPv6-Tunnelendpunkt]{\label{sixxs}Webseite der Anbieters \url{https://sixxs.net} f\"ur einen kostenfreien IPv6-Tunnelendpunkt}
+\end{figure}
+
+Ein solcher Tunnel l\"sst sich an einem Router oder auch direkt in einem Netzwerkendger\"at konfigurieren. Setzt man beispielsweise Linux ein, kann man mit dem Softwarepaket $ayiya$ sehr einfach die Konfiguration des IPv6-Tunnels abschlie{\ss}en. F\"ur das Testsystem mit dem Betriebssystem Kubuntu 12.04 war es nur erforderlich das Paket $ayiya$ mittels $apt-get install ayiya$ zu installieren und w\"ahrend der Installation die Anmeldedaten zu sixxs.net, dass hei{\ss}t Benutzer und Passwort mitzuteilen. Es werden im Verlauf der Installation dann s\"amtliche Tunnelparameter selbstst\"andig ermittelt und alle Einstellungen so \"ubernommen, dass nach der Installation IPv6-Konnektivität \"uber den Tunnel gew\"ahrleistet ist. Testen l\"asst sich das beispielsweise \"uber die Webseite \url{http://test-ipv6.com/}, die dann folgendes Resultat liefern sollte:
+
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[width=1\hsize]{./images/testipv6.png}
+ \end{center}
+\caption[Webseite zum Testen der IPv6-Konnektivit\"at: \url{http://test-ipv6.com/}]{\label{testipv6}Webseite zum Testen der IPv6-Konnektivit\"at: \url{http://test-ipv6.com/}}
+\end{figure}
+
+
 
 
 \clearpage
@@ -319,22 +378,29 @@ abrufbar am 03.03.2014
 \bibitem{ianaipv4list} \url{https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.txt}\\
 abrufbar am 05.03.2014
 
-\bibitem{rfc1631} RFC1631 - The IP Network Address Translator\\
-\url{https://www.ietf.org/rfc/rfc1631.txt}\\
+\bibitem{RFC1631} RFC1631 - The IP Network Address Translator\\
+\url{https://www.ietf.org/RFC/RFC1631.txt}\\
 abrufbar am 06.03.2014
 
-\bibitem{rfc2131} RFC2131 - Dynamic Host Configuration Protocol\\
-\url{http://tools.ietf.org/html/rfc2131}\\
+\bibitem{RFC2131} RFC2131 - Dynamic Host Configuration Protocol\\
+\url{http://tools.ietf.org/html/RFC2131}\\
 abrufbar am 05.03.2014
 
 \bibitem{ipv4v6map} \"Ubersichtsgrafik zum Umfang der Routingtabell f\"ur IPv4 und IPv6\\
 \url{http://greenbyte.ch/wp-content/uploads/2012/08/ipv4-ipv6.gif?cf3116}\\
 abrufbar am 19.03.2014
 
-\bibitem{rfc5156} RFC5156 - Special-Use IPv6 Addresses \\
-\url{http://tools.ietf.org/html/rfc5156}\\
+\bibitem{RFC5156} RFC5156 - Special-Use IPv6 Addresses \\
+\url{http://tools.ietf.org/html/RFC5156}\\
 abrufbar am 19.03.2014
 
+\bibitem{RFC3122} RFC3122 -  Extensions to IPv6 Neighbor Discovery for Inverse Discovery Specification\\
+\url{http://tools.ietf.org/html/RFC5156}\\
+abrufbar am 25.03.2014
+
+\bibitem{RFC4861} RFC4861 - Neighbor Discovery for IP version 6 (IPv6) \\
+\url{http://tools.ietf.org/html/RFC4861}\\
+abrufbar am 25.03.2014
 
 \end{thebibliography}
  
