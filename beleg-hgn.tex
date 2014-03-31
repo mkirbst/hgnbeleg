@@ -118,11 +118,13 @@ Die Internet Protokolle in Version 4 und 6\\
 im Vergleich - ein \"Uberblick\\
 }}}
 \end{Large}
-Beleg im Fach Hochgeschwindigkeitsnetze
+Beleg im Fach Hochgeschwindigkeitsnetze bei  Prof. Dr. Klaus Hänßgen
 \end{center}
  
 \begin{small}
-\vfill Marcel Kirbst, B.Sc. \\ Sieglitz 39 \\ 06618 Molauer Land \\
+
+\vfill
+Marcel Kirbst, B.Sc. \\ Sieglitz 39 \\ 06618 Molauer Land \\
 marcel.kirbst@htwk-leipzig.de\\
 \today
 \end{small}
@@ -252,7 +254,7 @@ Bei Verwendung von IPv6 ist es den Netzwerkger\"aten m\"oglich \"uber so genannt
 
 Es wurde auf einem Laptop eine Linux-Distribution Kubuntu 13.10 installiert. Der Aufruf des Befehls \textit{ifconfig} meldet f\"ur die Netzwerkschnittstelle "'sixxs"' (Anmerkung: sixxs.net ist ein Netzwerktunnel um Internetzug\"angen ohne natives IPv6 IPv6-Konnektivit\"at zu verschaffen, siehe dazu folgendes Kaptiel) zeigt rot umrahmt die Link-Local-Adresse $fe80::8004:d600:180:2/64$, die nur lokal g\"ultig ist, sowie die global g\"utige IPv6-Adresse $2a02:8204:d600:180::2$, in der Grafik gelb umrahmt.\\
 \\
-Nachdem sich ein Netzwerkger\"at eine Link-Lokal-Adresse zugewiesen hat, kann dieses, wie bereits oben erw\"ahnt, mit allen anderen Netzwerkger\"aten im gleichen Netzwerksegemnt kommunizieren, beispielsweise um so genannte Router-Advertisments abzusetzen. Das sind Netzwerkanfragen, auf die jeder IPv6-f\"ahige Router im Netzwerksegment antworten muss. Der Router kann dann in der Antwort dem anfragenden Netzwerkger\"at seine eigene IPv6-Adresse sowie das global g\"ultige IPv6-Prefix f\"ur dieses Netzwerksegment mitteilen. Wenn dies erfolgt ist, kann sich das anfragende Netzwerkger\"at aus dem globalen Prefix eine IPv6-Adresse mit globaler G\"ultigkeit generieren, mit deren Hilfe eine vollst\"andige Netzwerkkonnektivit\"at gegeben ist. 
+Nachdem sich ein Netzwerkger\"at eine Link-Lokal-Adresse zugewiesen hat, kann dieses, wie bereits oben erw\"ahnt, mit allen anderen Netzwerkger\"aten im gleichen Netzwerksegemnt kommunizieren, beispielsweise um so genannte Router-Advertisements abzusetzen. Das sind Netzwerkanfragen, auf die jeder IPv6-f\"ahige Router im Netzwerksegment antworten muss. Der Router kann dann in der Antwort dem anfragenden Netzwerkger\"at seine eigene IPv6-Adresse sowie das global g\"ultige IPv6-Prefix f\"ur dieses Netzwerksegment mitteilen. Wenn dies erfolgt ist, kann sich das anfragende Netzwerkger\"at aus dem globalen Prefix eine IPv6-Adresse mit globaler G\"ultigkeit generieren, mit deren Hilfe eine vollst\"andige Netzwerkkonnektivit\"at gegeben ist. 
 
 
 \clearpage
@@ -275,7 +277,7 @@ Die Oberfläche der Erde umfasst grob geschätzt 510 Millionen Quadratkilometer,
 
 \subsection{vereinfachte Netzwerkwartung}
 
-Unerfahrene Nutzer m\"ussen viel weniger administrativ t\"atig werden als in IPv4. Somit sinkt auch die Fehlerquote durch Fehlkonfigurationen. Beispielsweise m\"ussen Router nicht mehr von Hand konfiguriert werden. In IPv6 existieren so genannte Router-Advertisments. Wenn ein Netzwerkclient in einem IPv6-Netzwerk benachbarte Router anfragt, so m\"ussen sich laut Standard alle Router in diesem Netzwerk mit einem Router-Advertisment dem Netzwerkclient gegen\"uber bekannt machen. Im folgenden soll ein Screenshot die Technik illustrieren:
+Unerfahrene Nutzer m\"ussen viel weniger administrativ t\"atig werden als in IPv4. Im Normalfall muss der Benutzer nichts weiter tun, als sein Ger\"at mit dem Netzwerk verbinden und einschalten. Somit sinkt auch die Fehlerquote durch Fehlkonfigurationen. Beispielsweise m\"ussen Router nicht mehr von Hand konfiguriert werden. In IPv6 existieren so genannte Router-Advertisements. Wenn ein Netzwerkclient in einem IPv6-Netzwerk benachbarte Router anfragt, so m\"ussen sich laut IPv6-Standard alle Router in diesem Netzwerk mit einem Router-Advertisement dem Netzwerkclient gegen\"uber bekannt machen. Dem Netzwerkger\"at stehen im Anschluss alle Informationen zur Verf\"ugung, die f\"ur eine vollst\"andige Internetkonnektivit\"at erforderlich sind. 
 
 \subsection{Verkleinerung der Routingtabellen}
 In den Standards zu IPv6 ist vorgesehen, dass jedem Kunden mindestens ein /64-Netz zugeteilt wird. Indem man Kunden komplette Netze zuteilt und die Adressverteilung dem Kunden, beziehungsweise dessen Router selbst überlässt, schrumpft der Umfang der Routingtabellen, die öffentliche Router im Internet vorhalten müssen, erheblich. Die folgende Grafik, die der Website unter \cite{ipv4v6map} entliehen ist, soll diesen Umstand visualisieren.
@@ -342,10 +344,10 @@ Falls der verwendete Internet Service Provider IPv6 nativ am verwendeten Interne
 \\
 Vom Autor muss an dieser Stelle negativ angemerkt werden, dass zum derzeitigen Zeitpunkt, dass heisst im Jahr 2014, also 15 Jahre nach der finalen Verabschiedung des IPv6-Standards,  keiner der in Deutschland im Privatkundenmarkt t\"atigen Internet Service Provider in der Lage, beziehungsweise Willens ist, dem Kunden IPv6 zur Verf\"ugung zu stellen. Entweder wurde noch garnicht mit der Umstellung begonnen, oder der Prozentsatz der Kunden mit nativer IPv6-Konnektivit\"at liegt noch im unterem einstelligen Prozentbereich.\\
 \\
-Gesch\"aftskunden genie{\ss} en in der Regel den Vorzug einer vielf\"altigeren Auswahl im Bezug auf die Internet Service Provider. Es kann daher vom Autor nur angeraten werden, bei der Auswahl der zuk\"unftigen Internet Service Provider die native IPv6-Konnektivt\"t zu einem Schl\"usselkriterium zu machen.
+Gesch\"aftskunden genie{\ss}en in der Regel den Vorzug einer vielf\"altigeren Auswahl im Bezug auf die Internet Service Provider. Es kann daher vom Autor nur angeraten werden, bei der Auswahl der zuk\"unftigen Internet Service Provider die native IPv6-Konnektivt\"at zu einem Schl\"usselkriterium zu machen.
 
 \subsection{IPv6-Konnektivit\"at per Tunnel}
-Ist der Anwender an einen Internet Service Provider gebunden, der noch kein natives IPv6 an seinem Internetanschluss zur Verf\"ugung stellt, gibt es noch die M\"glichkeit mit Hilfe eines IPv6-Tunnels IPv6-Konnektivit\"at zu erm\"oglichen. Es ist bei Anbietern wie \url{htt zutps://www.sixxs.net/} m\"glich, sich kostenfrei einen IPv6-Tunnelendpunk inklusive eines global routbaren 64 Bit gro{\ss}em IPv6-Adressblock zuteilen zu lassen. 
+Ist der Anwender an einen Internet Service Provider gebunden, der noch kein natives IPv6 an seinem Internetanschluss zur Verf\"ugung stellt, gibt es noch die M\"oglichkeit mit Hilfe eines IPv6-Tunnels IPv6-Konnektivit\"at zu erm\"oglichen. Es ist bei Anbietern wie \url{https://www.sixxs.net/} m\"oglich, sich kostenfrei einen IPv6-Tunnelendpunk inklusive eines global routbaren 64 Bit gro{\ss}en IPv6-Adressblock zuteilen zu lassen. 
 
 \begin{figure}[htb]
 \begin{center}
@@ -354,7 +356,37 @@ Ist der Anwender an einen Internet Service Provider gebunden, der noch kein nati
 \caption[Webseite der Anbieters \url{https://sixxs.net} f\"ur einen kostenfreien IPv6-Tunnelendpunkt]{\label{sixxs}Webseite der Anbieters \url{https://sixxs.net} f\"ur einen kostenfreien IPv6-Tunnelendpunkt}
 \end{figure}
 
-Ein solcher Tunnel l\"sst sich an einem Router oder auch direkt in einem Netzwerkendger\"at konfigurieren. Setzt man beispielsweise Linux ein, kann man mit dem Softwarepaket $ayiya$ sehr einfach die Konfiguration des IPv6-Tunnels abschlie{\ss}en. F\"ur das Testsystem mit dem Betriebssystem Kubuntu 12.04 war es nur erforderlich das Paket $ayiya$ mittels $apt-get install ayiya$ zu installieren und w\"ahrend der Installation die Anmeldedaten zu sixxs.net, dass hei{\ss}t Benutzer und Passwort mitzuteilen. Es werden im Verlauf der Installation dann s\"amtliche Tunnelparameter selbstst\"andig ermittelt und alle Einstellungen so \"ubernommen, dass nach der Installation IPv6-Konnektivität \"uber den Tunnel gew\"ahrleistet ist. Testen l\"asst sich das beispielsweise \"uber die Webseite \url{http://test-ipv6.com/}, die dann folgendes Resultat liefern sollte:
+Ein solcher Tunnel l\"asst sich an einem Router oder auch direkt in einem Netzwerkendger\"at konfigurieren. Setzt man beispielsweise Linux ein, kann man via mit dem Softwarepaket \textit{aiccu} sehr einfach die Konfiguration des IPv6-Tunnels vom Typ AYIYA (Anything in Anything, siehe\cite[sixxsayiya]{sixxsayiya} )abschlie{\ss}en. F\"ur das Testsystem mit dem Betriebssystem Kubuntu 12.04 war es nur erforderlich das Paket \textit{aiccu} mittels 
+
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+	language=BASH,
+	keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
+	identifierstyle=\ttfamily,
+	commentstyle=\color[rgb]{0.133,0.545,0.133},
+	stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+	showstringspaces=false,
+	basicstyle=\scriptsize,
+	numbers=left,
+	stepnumber=1,
+	numbersep=6pt,
+	numberstyle=\tiny,
+	tabsize=1,
+	breaklines=true,	%automatischer Zeilenumbruch
+	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	breakatwhitespace=false,
+	aboveskip={1.5\baselineskip},
+  	columns=fixed,
+  	upquote=true,
+  	extendedchars=true,
+  	backgroundcolor=\color[rgb]{0.97,0.97,0.97},
+}
+\begin{lstlisting}
+$ sudo apt-get install aiccu
+\end{lstlisting}
+
+zu installieren und w\"ahrend der Installation die Anmeldedaten zu sixxs.net, dass hei{\ss}t Benutzer und Passwort mitzuteilen. Es werden im Verlauf der Installation dann s\"amtliche Tunnelparameter selbstst\"andig ermittelt und alle Einstellungen so \"ubernommen, dass nach der Installation IPv6-Konnektivität \"uber den Tunnel gew\"ahrleistet ist. Testen l\"asst sich das beispielsweise \"uber die Webseite \url{http://test-ipv6.com/}, die dann folgendes Resultat liefern sollte:
 
 \begin{figure}[htb]
 \begin{center}
@@ -363,9 +395,9 @@ Ein solcher Tunnel l\"sst sich an einem Router oder auch direkt in einem Netzwer
 \caption[Webseite zum Testen der IPv6-Konnektivit\"at: \url{http://test-ipv6.com/}]{\label{testipv6}Webseite zum Testen der IPv6-Konnektivit\"at: \url{http://test-ipv6.com/}}
 \end{figure}
 
-\clearpage
+%%\clearpage
 \section{Zusammenfassung und Ausblick}
-Allein durch die immens fortgeschrittene Knappheit an IPv4-Adressen ist ersichtlich, dass der Umstieg zu IPv6 unumg\"anglich ist. Umso schmerzlicher ist im Jahr 2014 festzustellen, wie wenig verbreitet IPv6 noch immer ist. Das gilt f\"ur Internet Service Provider genauso, wie f\"ur Weltkonzerne wie Apple oder IBM, deren Webpräsenzen bis heute nicht über IPv6-Konnektivit\"at verf\"ugen. Es gibt aber auch positive Beispiele, wie beispielsweise der deutsche Hardwarehersteller \url{http://www.avm.de} oder \url{http://www.heise.de}. Es bleibt zu hoffen das viele Menschen verstehen, dass IPv6 nicht nur den verf\"ugbaren Adressraum signifikant erh\"oht, sondern auch viele andere technische Unzul\"anglichkeiten ausmerzt, die im Laufe der Jahre bei der Verwendung von IPv4 zu Tage getreten sind. Der Autor ist der Meinung, dass durch hinreichend viele aktive IPv6-Nutzer auch gr\"o{\ss}ere Konzerne, wie auch \"offentliche Einrichtungen (die HTWK ist hier leider auch kein positives Beispiel) endlich dazu \"uber gehen, IPv6 nicht mehr so "'stiefm\"utterlich"` zu behandeln, wie es vielerorts bis Heute leider der Fall zu sein scheint. 
+Allein durch die immens fortgeschrittene Knappheit an IPv4-Adressen ist ersichtlich, dass der Umstieg zu IPv6 unumg\"anglich ist. Umso schmerzlicher ist im Jahr 2014 festzustellen, wie wenig verbreitet IPv6 noch immer ist. Das gilt f\"ur Internet Service Provider genauso, wie f\"ur Weltkonzerne wie Apple oder IBM, deren Webpräsenzen bis heute nicht über IPv6-Konnektivit\"at verf\"ugen. Es gibt aber auch positive Beispiele, wie beispielsweise der deutsche Hardwarehersteller \url{http://www.avm.de} oder \url{http://www.heise.de}. Es bleibt zu hoffen das viele Menschen verstehen, dass IPv6 nicht nur den verf\"ugbaren Adressraum signifikant erh\"oht, sondern auch viele andere technische Unzul\"anglichkeiten ausmerzt, die im Laufe der Jahre bei der Verwendung von IPv4 zu Tage getreten sind. Der Autor ist der Meinung, dass durch hinreichend viele aktive IPv6-Nutzer auch gr\"o{\ss}ere Konzerne, wie auch \"offentliche Einrichtungen\footnote{Die HTWK Leipzig ist im Bezug auf IPv6-Konnektivit\"at leider auch kein positives Beispiel} endlich dazu \"uber gehen, IPv6 nicht mehr so "'stiefm\"utterlich"` zu behandeln, wie es vielerorts bis Heute leider der Fall zu sein scheint. 
 
 
 \clearpage
@@ -415,6 +447,10 @@ abrufbar am 25.03.2014
 \bibitem{RFC4861} RFC4861 - Neighbor Discovery for IP version 6 (IPv6) \\
 \url{http://tools.ietf.org/html/RFC4861}\\
 abrufbar am 25.03.2014
+
+\bibitem{sixxsayiya} AYIYA: Anything In Anything draft-massar-v6ops-ayiya-02\\
+\url{http://tools.ietf.org/html/draft-massar-v6ops-ayiya-02}\\
+abrufbar am 28.03.2014
 
 \end{thebibliography}
  
