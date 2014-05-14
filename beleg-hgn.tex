@@ -135,6 +135,14 @@ marcel.kirbst@htwk-leipzig.de\\
  
 %Inhaltsverzeichnis (aktualisiert sich erst nach dem zweiten Setzen)
 \tableofcontents
+
+%Abbildungsverzeichnis und Tabellenverzeichnis auf einer Seite
+\clearpage
+\listoffigures
+
+\listoftables
+
+
 \thispagestyle{empty}
  
 %Beginn einer neuen Seite
@@ -146,42 +154,48 @@ marcel.kirbst@htwk-leipzig.de\\
 \pagestyle{plain}
  
 \section{Einleitung}
-Dieser Beleg befasst sich mit der Vorstellung der Protokollfamilie IPv6. Neben einem kompakten Überblick über IPv6 soll auf die Notwendigkeit sowie die Vorzüge von IPv6 im Vergleich zu IPv4, der derzeit weltweit am meisten im Internet genutzten Protokollfamilie, eingegangen werden.\\
+\label{sec:0}
+Diese Arbeit befasst sich mit der Vorstellung der Protokollfamilie IPv6. Neben einem kompakten Überblick über IPv6 soll auf die Notwendigkeit sowie die Vorzüge von IPv6 im Vergleich zu IPv4, der derzeit weltweit am meisten im Internet genutzten Protokollfamilie, eingegangen werden.\\
 \\
+Im ersten Kapitel \nameref{sec:1} werden einige Probleme erläutert, die bei der Verwendung der Protokollfamilie IPv4 auftreten. In Kapitel \nameref{sec:2} wird die Protokollfamilie IPv6 vorgestellt. Welche Probleme gelöst werden, wenn anstelle von IPv4, IPv6 verwendet wird, wird im Kapitel \nameref{sec:3} erläutert. Im Kapitel \nameref{sec:4} wird anhand eines Praxisbeispiels erläutert wie sich IPv6-Konnektivität an einem Rechnersystem kofigurieren lässt. Abschließend erfolgt im Kapitel \nameref{sec:5} eine Zusammenfassung der Arbeit.
 
-Auch wenn klar sein muss, dass es im Umfang eines solchen Beleges nicht ann\"ahrend abschlie{\ss}end m\"oglich ist das Thema IPv6 ersch\"opfend vorzustellen, so hofft der Autor dem geneigten Leser doch einen \"Uberblick \"uber die Funktionen und Vorteile von IPv6 bieten zu k\"onnen.
+
+%%Auch wenn klar sein muss, dass es im Umfang eines solchen Beleges nicht ann\"ahrend abschlie{\ss}end m\"oglich ist das Thema IPv6 ersch\"opfend vorzustellen, so hofft der Autor dem geneigten Leser doch einen \"Uberblick \"uber die Funktionen und Vorteile von IPv6 bieten zu k\"onnen.
 
 \clearpage
-\section{Warum IPv6 ?}
-Das Internet ist heute überall im täglichen Leben präsent und wird von der UN inzwischen zu den Menschenrechten gezählt.\cite{uninet} Die im Internet heute noch am häufigsten verwendete Protokollfamilie ist IPv4. Wie der folgende Abschnitt darlegt, ist die weitere Verwendung von IPv4 aber mit immer mehr Problemen behaftet.
+\section{Probleme bei der Verwendung von IPv4}
+\label{sec:1}
+Das Internet ist heute überall im täglichen Leben präsent und wird von der UN inzwischen zu den Menschenrechten gezählt.\cite{uninet} Die im Internet heute noch am häufigsten verwendete Protokollfamilie ist IPv4. Wie der Abschnitt \nameref{subsec:1.1} darlegt, ist die weitere Verwendung von IPv4 aber mit immer mehr Problemen behaftet.
 
 \subsection{Probleme mit IPv4}
-Zu Beginn der Entwicklung des Internets war nicht abzusehen wie rasant und erfolgreich sich diese vollziehen würde. Ziel war einige wenige Rechnersysteme mit einander zu verbinden. Daher schien es beispielsweise mehr als ausreichend einen 32 Bit breiten Adressraum zu wählen, der somit $2^{32} = 4.294.967.296$ eindeutige Netzwerkadressen zulässt. In den 1970er Jahren entsprach das immerhin annährend einer IPv4-Adresse pro Erdenbewohner f\"ur eine geplante Vernetzung einiger weniger milit\"arisch genutzter Rechnersysteme.
+\label{subsec:1.1}
+Zu Beginn der Entwicklung des Internets war nicht abzusehen wie stark sich das Internet bis heute verbreitet. Da das Ziel anfangs war, einige wenige Rechnersysteme mit einander zu verbinden, waren im Jahr 1972 nur 40 Rechner vernetzt.\cite{unikoeln} Aus damaliger Sicht ist der Adressraum mehr als ausreichend dimensioniert worden. IPv4 spezifiziert für IPv4-Adressen 32 Bit, das entspricht $2^{32} = 4.294.967.296$ eindeutigen Netzwerkadressen. In den 1970er Jahren entsprach das immerhin annährend einer IPv4-Adresse pro Erdbewohner.
 
-\subsubsection{Adressknappheit}
-Sp\"ater begannen auch Bildungseinrichtungen und nichtmilit\"arische Konzerne das Internet zu nutzen.
-Zu dieser Zeit wurde IPv4 Adressraum relativ gro\ss{}z\"ugig verteilt. Viele Unternehmen und Bildungseinrichtungen der damaligen Zeit erhielten 24 Bit gro\ss{}e Adressbl\"ocke. Das bedeutet, dass dem jeweilgen Unternehmen ein Adressblock zugeteilt wurde, welcher $2^{24}$ also $16.777.216$ IPv4 Adressen umfasst. Beispiele f\"ur solche Unternehmen sind IBM (Adressraum 9.*.*.*), Hewlett-Packard (15.*.*.*) und Apple (17.*.*.*). Eine vollst\"andige Liste l\"asst sich unter \cite{ianaipv4list} einsehen.\\
+\subsubsection{Adressenknappheit bei Verwendung von IPv4}
+In den 1970er Jahren begannen auch Bildungseinrichtungen und nichtmilit\"arische Konzerne das Internet zu nutzen.
+Zu dieser Zeit wurde IPv4 Adressraum relativ gro\ss{}z\"ugig verteilt. Die meisten amerikanischen Unternehmen und Bildungseinrichtungen dieser Zeit erhielten 24 Bit gro\ss{}e Adressbl\"ocke. Das bedeutet, dass dem jeweilgen Unternehmen ein Adressblock zugeteilt wurde, welcher $2^{24}$ also $16.777.216$ IPv4 Adressen umfasst. Beispiele f\"ur solche Unternehmen sind IBM (Adressraum 9.*.*.*), Hewlett-Packard (15.*.*.*) und Apple (17.*.*.*). Eine vollst\"andige Liste l\"asst sich unter \cite{ianaipv4list} einsehen.\\
 \\
 Beg\"unstigt wurde diese Problematik durch die anf\"angliche strikte Adresseinteilung in Klassen (Class A - E Netze), wobei es sich bei Class-A Netzen um besagte Netze mit 8 Bit langem Netzpr\"afix handelt. Class-B Netze besitzen ein Netzpr\"afix von 16 Bit und Class-C Netze einen Netzpr\"afix von 24 Bit. Es konnten somit nur Netzbl\"ocke f\"ur $2^{32} - 2^{24} = 256$ oder weniger Teilnehmer (Class-C Netze), $2^{32} - 2^{16} = 65.536$ oder weniger Teilnehmer (Class-B Netze) oder besagte $2^{32} - 2^{8} = 16.777.216$ zugeteilt werden. Beispielsweise bedeutete das f\"ur jede Einrichtung, die wenig mehr als 256 IPv4-Adressen ben\"otigte, ein Class-B Adressblock zu beantragen, auch wenn dann ein Gro\ss{}teil der Adressen ungenutzt blieb.\\
 \\
-Die nachtr\"agliche Einf\"uhrung einer Technik namens "`Classless Interdomain Routing"' (Abk\"urzung: CIDR) milderte die Problemstellung in der Weise ab, dass eine so genannte Netzwerkmaske zu jeder IPv4-Adresse angegeben wird, die angibt wieviele Bits der IPv4-Adresse den Netzwerkpr\"afix zugeordnet werden. Die Netzwerkmaske $255.255.0.0$ f\"ur die IPv4-Adresse $192.168.12.34$ definiert das Netzwerkpr\"afix $192.168$ sowie die Teilnehmeradresse $12.34$. Als Kurzschreibweise hat sich alternativ folgende Form verbreitet: 192.168.12.34/16. Hier gibt die Zahl nach dem Schr\"agstrich die Bitanzahl der Netzmaske an.\\
+Die nachtr\"agliche Einf\"uhrung einer Technik namens "`Classless Interdomain Routing"' (Abk\"urzung: CIDR) verbesserte temporär die Problemstellung in der Weise, dass eine so genannte Netzwerkmaske zu jeder IPv4-Adresse angegeben wird, die angibt wieviele Bits der IPv4-Adresse den Netzwerkpr\"afix zugeordnet werden. Die Netzwerkmaske $255.255.0.0$ f\"ur die IPv4-Adresse $192.168.12.34$ definiert das Netzwerkpr\"afix $192.168$ sowie die Teilnehmeradresse $12.34$. Als Kurzschreibweise hat sich alternativ folgende Form verbreitet: 192.168.12.34/16. Hier gibt die Zahl nach dem Schr\"agstrich die Bitanzahl der Netzmaske an.\\
 \\
 Au\ss{}erdem ist zu erw\"ahnen, dass sich die IPv4-Adressen in einem Netzwerksegment nicht vollst\"andig Teilnehmern zuordnen lassen, da bestimmte Adressen wie beispielsweise $192.168.12.0/24$ (Bezeichner f\"ur dieses Netzsegment) oder $192.168.12.255/24$ (Broadcastadresse in diesem Netzsegment) eine besondere Bedeutung haben. \\
 \\
-Ein weiterer Umstand der die Problematik versch\"arft ist, dass die Zuteilung von IPv4-Adressbl\"ocken durch die IANA endg\"ultig ist. Eine M\"oglichkeit IPv4-Adressen zur\"uck zugewinnen ist nicht vorgesehen. 
+Ein weiterer Umstand, der die Problematik versch\"arft, ist das die Zuteilung von IPv4-Adressbl\"ocken durch die IANA endg\"ultig ist. Eine M\"oglichkeit, IPv4-Adressen zur\"uck zugewinnen ist nicht vorgesehen. 
 
 
 \subsubsection{Konfiguration von Netzwerkger\"aten  unter Verwendung von IPv4}
 
-Anf\"anglich musste jedes neue Netzwerkger\"at von Hand durch den Benutzer konfiguriert werden um im Netzwerk kommunizieren zu k\"onnen. Das umfasst mindestens die Vergabe einer IPv4-Adresse mit der zugeh\"origen Netzmaske. Soll das Ger\"at au\ss{}erdem noch mit dem Internet kommunizieren k\"onnen, ist die Angabe der IPv4-Adresse des Routers in diesem Netz sowie mindestens eines Domain Name Service-Servers (Abk\"urzung: DNS-Server) erforderlich.\\
+Vor der Entwicklung von  DHCP (Dynamic Host Configuration Protocol \cite[RFC2131]{RFC2131}) musste jedes neue Netzwerkger\"at von Hand durch den Benutzer konfiguriert werden um im Netzwerk kommunizieren zu k\"onnen. Das umfasst mindestens die Vergabe einer IPv4-Adresse mit der zugeh\"origen Netzmaske um mit Netzwerkgeräten im gleichen Subnetz kommunizieren zu können. Soll das Ger\"at au\ss{}erdem noch mit dem Internet kommunizieren k\"onnen, ist die Angabe der IPv4-Adresse des zuständigen Routers in diesem Subnetz sowie mindestens eines Domain Name Service-Servers (Abk\"urzung: DNS-Server) erforderlich.\\
 \\
-Um unerfahrenen, beziehungsweise unachtsamen Benutzern diese potentielle Fehlerquelle zu ersparen, wurde eine Technik namens Dynamic Host Configuration Protocol (Abk\"urzung: DHCP) \cite[RFC2131]{RFC2131} spezifiziert, die es erm\"oglicht die Konfiguration eines Netzwerkg\"er\"ates ohne Eingriff des Benutzers, nur durch einen DHCP-Server, welcher zustandsbasiert arbeitet,  in diesem Netzwerksegment vorzunehmen. Leider arbeitet auch dieser Mechanismus nicht immer zuverl\"assig und fehlerfrei. Beispielsweise ist es f\"ur ein Netzwerkger\"at durchaus m\"oglich manuell eine IPv4-Adresse zu konfigurieren und zu verwenden, die innerhalb des IPv4-Adresskontingentes liegt, der einem DHCP-Server zur Zuteilung an anfragende DHCP-Klienten zugeteilt wurde. Solche Adresskonflikte f\"uhren in der Regel zu Netzwerkproblemen.
+Um unerfahrenen, beziehungsweise unachtsamen Benutzern diese potentielle Fehlerquelle zu ersparen, wurde eine Technik namens Dynamic Host Configuration Protocol (Abk\"urzung: DHCP) spezifiziert, die es erm\"oglicht die Konfiguration eines Netzwerkg\"er\"ates ohne Eingriff des Benutzers, nur durch einen DHCP-Server, welcher zustandsbasiert arbeitet,  in diesem Netzwerksegment vorzunehmen. Dieser Mechanismus arbeitet jedoch nicht zuverlässig und fehlerfrei, beispielsweise wenn der DHCP-Server neu gestartet wird, die Netzwerkgeräte jedoch ihre DHCP-Leases des DHCP-Servers behalten, die dieser vor dem Neustart verteilte. Weiterhin ist es beispielsweise f\"ur ein Netzwerkger\"at durchaus m\"oglich manuell eine IPv4-Adresse zu konfigurieren und zu verwenden, die innerhalb des IPv4-Adresskontingentes liegt, der einem DHCP-Server zur Zuteilung an anfragende DHCP-Klienten zugeteilt wurde. Solche Adresskonflikte f\"uhren in der Regel zu Netzwerkproblemen.
 
 
 \subsection{NAT}
-Network Adress Translation (Abk\"urzung: NAT) \cite[RFC1631]{RFC1631} ist eine weitere Technik, die entwickelt wurde um die Adressknappheit in IPv4 abzumildern. In den meisten F\"allen ist ein Netzwerkger\"at nicht direkt mit dem Internet verbunden, sondern nur Teilnehmer in einem Netzwerk. In den meisten Netzwerken werden so genannte "`private IPv4-Adressen"' genutzt um die Netzwerkger\"ate zu adressieren. Das sind IPv4-Adressen die von der IANA speziell f\"ur diesen Zweck spezifiziert wurden und aus diesem Grund auch nicht im Internet genutzt werden k\"onnen. Router im Internet verwerfen Pakete, die als Sender- oder Empf\"angeradresse eine solche private IPv4-Adresse enthalten. Private IPv4-Adressen sind alle IPv4-Adressen aus den Bl\"ocken $10.0.0.0/8$ bis $10.255.255.255/8$, $172.16.0.0/12$ bis $172.31.255.255/12$ sowie $192.168.0.0/16$ bis $192.168.255.255/16$. \\
+Network Adress Translation (Abk\"urzung: NAT) \cite{RFC1631} ist eine weitere Technik, die entwickelt wurde um die Adressknappheit in IPv4 zu umgehen. In den meisten F\"allen ist ein Netzwerkger\"at nicht direkt mit dem Internet verbunden, sondern nur Teilnehmer in einem Netzwerk. Anwendungsbeispiele hierfür sind Privathaushalte, Unternehmen sowie Bildungseinrichtungen, hier sind die Benutzer in der Regel nicht direkt (mit eigener, öffentlicher IPv4-Adresse) sonder durch einen vorgeschalteten Router mit dem Internet verbunden. In den meisten Netzwerken werden so genannte "`private IPv4-Adressen"' genutzt um die Netzwerkger\"ate zu adressieren. Das sind IPv4-Adressen die von der IANA speziell f\"ur diesen Zweck spezifiziert wurden und aus diesem Grund auch nicht im Internet genutzt werden k\"onnen. Router im Internet verwerfen Pakete, die als Sender- oder Empf\"angeradresse eine solche private IPv4-Adresse enthalten. Private IPv4-Adressen sind alle IPv4-Adressen aus den Bl\"ocken $10.0.0.0/8$ bis $10.255.255.255/8$, $172.16.0.0/12$ bis $172.31.255.255/12$ sowie $192.168.0.0/16$ bis $192.168.255.255/16$. \\
 \\
-Die Funktion eines Routers der NAT implementiert ist prinzipiell, dass alle Pakete von Netzwerkteilnehmen mit privater IPV4-Adresse im lokelen Netzwerk, die ins Internet geroutet werden sollen, vom Router so umgeschrieben werden, dass die private Absender-IP jedes Paketes durch die \"offentliche IP-Adresse des Routers ersetzt wird. Erh\"alt der Router Antwortpakete aus dem Internet die an diesen adressiert sind, schreibt er die Empf\"anger-IP wieder auf die private IP-Adresse des Netzwerkger\"ates um un leitet es dann weiter. Die Abbildung \ref{stdinetv4} am Ende des Kapitels soll dies illustrieren.\\
+Ein Router hat die Aufgabe, Daten zwischen mindestens zwei Netzwerken zu vermitteln. Ein Anwendungsbeispiel ist ein Router in einem Privathaushalt, siehe Abbildung \ref{stdinetv4}. In diesem Szenario vermittelt der Router Daten zwischen dem Internet (in der Abbildung rot) und dem lokalen Netzwerk (in der Abbildung grün). Router, die solche Szenarien bedienen, nutzen fast ausnahmslos NAT.
+Die Funktion eines Routers, der NAT implementiert ist prinzipiell, dass alle Pakete von Netzwerkteilnehmen mit privater IPV4-Adresse im lokelen Netzwerk, die ins Internet geroutet werden sollen, vom Router so umgeschrieben werden, dass die private Absender-IP jedes Paketes durch die \"offentliche IP-Adresse des Routers ersetzt wird. Erh\"alt der Router Antwortpakete aus dem Internet die an diesen adressiert sind, schreibt er die Empf\"anger-IP wieder auf die private IP-Adresse des Netzwerkger\"ates um und leitet es dann weiter.
 
 \begin{figure}[htb]
 \begin{center}
@@ -191,9 +205,9 @@ Die Funktion eines Routers der NAT implementiert ist prinzipiell, dass alle Pake
 GPL]{\label{stdinetv4}Beispielhafte Standardkonfiguration eines Internetanschluss.}
 \end{figure}
 
-In einigen Szenarien, in denen weniger komplexe, verbindungsorientierte Protokolle wie beispielsweise HTTP eingesetzt werden funktioniert NAT einigerma\ss{}en zufriedenstellend. In komplexeren Protokollen wie dem File Transfer Protokoll (Abk\"urzung: FTP) oder dem Session Initiaton Protokoll (Abk\"urzung: SIP), in denen zum Beispiel im Laufe der Etablierung der Kommunikation weitere Ports f\"ur die Kommunikation zwischen den Endger\"aten ausgehandelt werden m\"ussen, st\"o{\ss}t NAT aber schnell an seine Grenzen, mit der Folge das diese Protokolle sich dann nicht oder zumindest nicht zufriedenstellend einsetzen lassen.\\
+In einigen Szenarien, in denen weniger komplexe, verbindungsorientierte Protokolle wie beispielsweise HTTP eingesetzt werden funktioniert NAT einigermaßen problemlos. In komplexeren Protokollen wie dem File Transfer Protokoll (Abk\"urzung: FTP) oder dem Session Initiaton Protokoll (Abk\"urzung: SIP), in denen zum Beispiel im Laufe der Etablierung der Kommunikation weitere Ports f\"ur die Kommunikation zwischen den Endger\"aten ausgehandelt werden m\"ussen, versagt NAT, mit der Folge das diese Protokolle sich dann nicht, oder zumindest nicht oder nur unzuverlässig einsetzen lassen.\\
 \\
-Zwar kann dem zum Beispiel teilweise durch den Einsatz von spezifischen Proxy-Diensten auf dem Router f\"ur jedes einzelne Protokoll entgegen gewirkt werden, jedoch erh\"ot dieses Vorgehen die Komplexit\"at, den Verwaltungs- und Wartungsaufwand f\"ur die betreffenden Router.
+Zwar kann dem zum Beispiel teilweise durch den Einsatz von spezifischen Proxy-Diensten auf dem Router f\"ur jedes einzelne Protokoll entgegen gewirkt werden, jedoch erhöht dieses Vorgehen die Komplexit\"at, den Verwaltungs- und Wartungsaufwand f\"ur die betreffenden Router.
 
 \subsection{Ineffizienz in IPv4}
 Einige Designentscheidungen bei der Entwicklung von IPv4 haben sich als ineffizient erwiesen. Beispielhaft sei hier die Verwendung einer Prüfsumme für den Paketheader genannt. Jedes mal wenn ein IPv4-Paket verändert wird muss die Prüfsumme des Paketheaders neu berechnet werden. Vor allem bei Netzwerkgeräten, die hohe Durchsätze an Datenmengen bewältigen sollen, beispielsweise die Core-Router von Internet Service Providern, sorgt das für Ressourcenengpässe beziehungsweise aufwändigere und damit teurere Hardware.\\
@@ -206,15 +220,16 @@ Ein weiteres Effizienzproblem bei der Verwendung von IPv4 ist der im Laufe der Z
 
 %%\clearpage
 \section{\"Uberblick zu IPv6}
-Nachdem im vorangegangenen Kapitel viele der Nachteile von IPv4 erwähnt wurden, sollen nun im Folgenden die wichtigsten Neuerungen von IPv6 vorgestellt werden. 
+\label{sec:2}
+Nachdem im vorangegangenen Kapitel viele der Nachteile von IPv4 erwähnt wurden, sollen nun die wichtigsten Neuerungen von IPv6 vorgestellt werden. 
 
 \subsection{Gr\"o{\ss}e  des Adressraums}
-
+\label{subsec:2.1}
 Offenkundigste Neuerung von IPv6 ist die Erweiterung des Adressraums auf 128 Bit. Mit einem 128 Bit breiten Adressraum lassen sich \\
 $2^{128} = 340.282.366.920.938.463.463.374.607.431.768.211.456$ individuelle Adressen bilden. Vergleichweise gering fällt der 32 Bit breite IPv4-Adressraum aus, denn hier lassen sich "`nur"' $2^{32} = 4.294.967.296$ individuelle Adressen bilden. \\
 \\
 Bestand eine IPv4-Adresse aus vier durch einen Dezimalpunkt getrennten Ziffern mit Werten von jeweils zwischen 0 und 255, also zum Beispiel 85.114.130.113, musste für IPv6 mit seinen 128 Bit großen Adressen ein neues Konzept entwickelt werden.
-Der Ziffernbereich umfasst jetzt den Bereich aller Hexadezimalziffern, also 0 bis 9 und A bis F. Bis zu vier Hexadezimalziffern werden zu einem Block zusammen gefasst, wobei führende Nullen nicht ausgeschrieben werden m\"ussen. Acht dieser Blöcke, welche durch Doppelpunkte von einander abgegrenzt werden, bilden eine gültige IPv6-Adresse, die vollständig ausgeschrieben  beispielsweise so aussehen kann:  \[ 2001:41d0:0001:f7bb:0000:0000:0000:0001 \]\\
+Der Ziffernbereich umfasst jetzt den Bereich aller Hexadezimalziffern, also 0 bis 9 und A bis F.\footnote{In allen gängigen Betriebssystemen werden IPv4-Adressen durch Dezimalziffern und IPv6-Adressen durch Hexadezimalziffern dargestellt. Prinzipiell unterliegt die Darstellung einer Netzwerkadresse aber keinen Einschränkungen, solange diese eineindeutig ist.} Bis zu vier Hexadezimalziffern werden zu einem Block zusammen gefasst, wobei führende Nullen nicht ausgeschrieben werden m\"ussen. Acht dieser Blöcke, welche durch Doppelpunkte von einander abgegrenzt werden, bilden eine gültige IPv6-Adresse, die vollständig ausgeschrieben  beispielsweise so aussehen kann:  \[ 2001:41d0:0001:f7bb:0000:0000:0000:0001 \]\\
 \\
 Um den Umgang mit IPv6-Adressen komfortabler zu gestalten, gibt es mehrere Möglichkeiten, IPv6 Adressen verkürzt darzustellen. So müssen, wie bereits erwähnt, führende Nullen innerhalb eines Block nicht zwingend angegeben werden. Weiterhin ist es pro IPv6-Adresse möglich einen Bereich aus Nullen, der sich über mehrere Blöcke erstrecken kann, wegzulassen und stattdessen nur die Doppelpunkte am Beginn und dem Ende dieses Null-Bereiches darzustellen. Es ist jedoch zu beachten das pro IPv6 Adresse jeweils immer nur ein Nullbereich weggelassen werden darf, da die IPv6 Adresse sonst nicht mehr eineindeutig ist. Durch Anwendung dieser Konventionen lässt sich die oben genannte, voll ausgeschrieben IPv6 Adresse
 \[ 2001:41d0:0001:f7bb:0000:0000:0000:0001 \]
@@ -260,6 +275,7 @@ Nachdem sich ein Netzwerkger\"at eine Link-Lokal-Adresse zugewiesen hat, kann di
 
 \clearpage
 \section{L\"osungsans\"atze in IPv6 zu den Problemen mit IPv4}
+\label{sec:3}
 In diesem Kapitel sollen einige Vorz\"uge von IPv6 angef\"uhrt werden, die Probleme in IPv4 l\"osen.
  
 \subsection{Beseitigung der Adressknappheit auf absehbare Zeit}
@@ -336,7 +352,8 @@ GPL]{\label{stdinet}Beispielhafte Standardkonfiguration eines Internetanschluss 
 \end{figure}
 
 \clearpage
-\section{IPv6 heute - Möglichkeiten für Anwender und Administratoren}
+\section{Praxisbeispiel - Konfiguration eines Rechners für IPv6-Konnektivität}
+\label{sec:4}
 Wenn man  Webinhalte \"uber IPv6 abgrufen m\"ochte, ben\"otigt man einen Internetanschluss mit IPv6-Konnektivit\"at. Dazu gibt es zwei M\"oglichkeiten, entweder der verwendete Internet Service Provider stellt IPv6 am Internetnetanschluss direkt zur Verf\"ugung, oder man muss selbst nachbessern. Die beiden M\"oglichkeiten werden im Folgenden n\"aher beschrieben
 
 \subsection{IPv6-Konnektivit\"at nativ vom Internet Service Provider}
@@ -393,13 +410,14 @@ zu installieren und w\"ahrend der Installation die Anmeldedaten zu sixxs.net, da
 
 %%\clearpage
 \section{Zusammenfassung und Ausblick}
+\label{sec:5}
 Allein durch die immens fortgeschrittene Knappheit an IPv4-Adressen ist ersichtlich, dass der Umstieg zu IPv6 unumg\"anglich ist. Umso schmerzlicher ist im Jahr 2014 festzustellen, wie wenig verbreitet IPv6 noch immer ist. Das gilt f\"ur Internet Service Provider genauso, wie f\"ur Weltkonzerne wie Apple oder IBM, deren Webpräsenzen bis heute nicht über IPv6-Konnektivit\"at verf\"ugen. Es gibt aber auch positive Beispiele, wie beispielsweise der deutsche Hardwarehersteller \url{http://www.avm.de} oder \url{http://www.heise.de}. Es bleibt zu hoffen, dass viele Menschen verstehen, dass IPv6 nicht nur den verf\"ugbaren Adressraum signifikant erh\"oht, sondern auch viele andere technische Unzul\"anglichkeiten ausmerzt, die im Laufe der Jahre bei der Verwendung von IPv4 zu Tage getreten sind. Der Autor ist der Meinung, dass durch hinreichend viele aktive IPv6-Nutzer auch gr\"o{\ss}ere Konzerne, wie auch \"offentliche Einrichtungen\footnote{Die HTWK Leipzig ist im Bezug auf IPv6-Konnektivit\"at leider auch kein positives Beispiel} endlich dazu \"ubergehen, IPv6 nicht mehr so "'stiefm\"utterlich"` zu behandeln, wie es vielerorts bis heute leider der Fall zu sein scheint. 
 
 
 \clearpage
-\section{Literatur- und Quellenverzeichnis}
-
-\renewcommand\refname{Literaturverzeichnis}
+\section{Quellenverzeichnis}
+\label{sec:6}
+\renewcommand\refname{Quellenverzeichnis}
 \begin{thebibliography}{999}
 
 \bibitem{goncalves1998}Goncalves, Marcus:   {\sl IPv6 Networks} Mcgraw-Hill Professional, 1998,
@@ -408,14 +426,18 @@ Allein durch die immens fortgeschrittene Knappheit an IPv4-Adressen ist ersichtl
 \bibitem{dittler2002}Dittler, Hans Peter:  {\sl IPv6 - Das neue Internet-Protokoll, 2. Auflage}. dpunkt-Verlag Heidelberg, 2002,
 \\ISBN: 978-3-89864-149-4
 
-\end{thebibliography}
+%%\end{thebibliography}
 
-\renewcommand\refname{Quellenverzeichnis}
-\begin{thebibliography}{999}
+%%\renewcommand\refname{Quellenverzeichnis}
+%%\begin{thebibliography}{999}
 
 \bibitem{uninet}    
 \url{https://www.un.org/Depts/german/menschenrechte/a-hrc-20-L.13.pdf}\\
 abrufbar am 03.03.2014
+
+\bibitem{unikoeln}    
+\url{http://www.hki.uni-koeln.de/node/14956}\\
+abrufbar am 14.05.2014
 
 \bibitem{ianaipv4list} \url{https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.txt}\\
 abrufbar am 05.03.2014
