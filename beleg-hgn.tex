@@ -186,13 +186,13 @@ Ein weiterer Umstand, der die Problematik versch\"arft, ist das die Zuteilung vo
 
 \subsubsection{Konfiguration von Netzwerkger\"aten  unter Verwendung von IPv4}
 
-Vor der Entwicklung von  DHCP (Dynamic Host Configuration Protocol \cite[RFC2131]{RFC2131}) musste jedes neue Netzwerkger\"at von Hand durch den Benutzer konfiguriert werden um im Netzwerk kommunizieren zu k\"onnen. Das umfasst mindestens die Vergabe einer IPv4-Adresse mit der zugeh\"origen Netzmaske um mit Netzwerkgeräten im gleichen Subnetz kommunizieren zu können. Soll das Ger\"at au\ss{}erdem noch mit dem Internet kommunizieren k\"onnen, ist die Angabe der IPv4-Adresse des zuständigen Routers in diesem Subnetz sowie mindestens eines Domain Name Service-Servers (Abk\"urzung: DNS-Server) erforderlich.\\
+Vor der Entwicklung von  DHCP (Dynamic Host Configuration Protocol)\cite{RFC2131} musste jedes neue Netzwerkger\"at von Hand durch den Benutzer konfiguriert werden um im Netzwerk kommunizieren zu k\"onnen. Das umfasst mindestens die Vergabe einer IPv4-Adresse mit der zugeh\"origen Netzmaske um mit Netzwerkgeräten im gleichen Subnetz kommunizieren zu können. Soll das Ger\"at au\ss{}erdem noch mit dem Internet kommunizieren k\"onnen, ist die Angabe der IPv4-Adresse des zuständigen Routers in diesem Subnetz sowie mindestens eines Domain Name Service-Servers (Abk\"urzung: DNS-Server) erforderlich.\\
 \\
 Um unerfahrenen, beziehungsweise unachtsamen Benutzern diese potentielle Fehlerquelle zu ersparen, wurde eine Technik namens Dynamic Host Configuration Protocol (Abk\"urzung: DHCP) spezifiziert, die es erm\"oglicht die Konfiguration eines Netzwerkg\"er\"ates ohne Eingriff des Benutzers, nur durch einen DHCP-Server, welcher zustandsbasiert arbeitet,  in diesem Netzwerksegment vorzunehmen. Dieser Mechanismus arbeitet jedoch nicht zuverlässig und fehlerfrei, beispielsweise wenn der DHCP-Server neu gestartet wird, die Netzwerkgeräte jedoch ihre DHCP-Leases des DHCP-Servers behalten, die dieser vor dem Neustart verteilte. Weiterhin ist es beispielsweise f\"ur ein Netzwerkger\"at durchaus m\"oglich manuell eine IPv4-Adresse zu konfigurieren und zu verwenden, die innerhalb des IPv4-Adresskontingentes liegt, der einem DHCP-Server zur Zuteilung an anfragende DHCP-Klienten zugeteilt wurde. Solche Adresskonflikte f\"uhren in der Regel zu Netzwerkproblemen.
 
 
 \subsection{NAT}
-Network Adress Translation (Abk\"urzung: NAT) \cite{RFC1631} ist eine weitere Technik, die entwickelt wurde um die Adressknappheit in IPv4 zu umgehen. In den meisten F\"allen ist ein Netzwerkger\"at nicht direkt mit dem Internet verbunden, sondern nur Teilnehmer in einem Netzwerk. Anwendungsbeispiele hierfür sind Privathaushalte, Unternehmen sowie Bildungseinrichtungen, hier sind die Benutzer in der Regel nicht direkt (mit eigener, öffentlicher IPv4-Adresse) sonder durch einen vorgeschalteten Router mit dem Internet verbunden. In den meisten Netzwerken werden so genannte "`private IPv4-Adressen"' genutzt um die Netzwerkger\"ate zu adressieren. Das sind IPv4-Adressen die von der IANA speziell f\"ur diesen Zweck spezifiziert wurden und aus diesem Grund auch nicht im Internet genutzt werden k\"onnen. Router im Internet verwerfen Pakete, die als Sender- oder Empf\"angeradresse eine solche private IPv4-Adresse enthalten. Private IPv4-Adressen sind alle IPv4-Adressen aus den Bl\"ocken $10.0.0.0/8$ bis $10.255.255.255/8$, $172.16.0.0/12$ bis $172.31.255.255/12$ sowie $192.168.0.0/16$ bis $192.168.255.255/16$. \\
+Network Adress Translation (Abk\"urzung: NAT)\cite{RFC1631} ist eine weitere Technik, die entwickelt wurde um die Adressknappheit in IPv4 zu umgehen. In den meisten F\"allen ist ein Netzwerkger\"at nicht direkt mit dem Internet verbunden, sondern nur Teilnehmer in einem Netzwerk. Anwendungsbeispiele hierfür sind Privathaushalte, Unternehmen sowie Bildungseinrichtungen, hier sind die Benutzer in der Regel nicht direkt (mit eigener, öffentlicher IPv4-Adresse) sonder durch einen vorgeschalteten Router mit dem Internet verbunden. In den meisten Netzwerken werden so genannte "`private IPv4-Adressen"' genutzt um die Netzwerkger\"ate zu adressieren. Das sind IPv4-Adressen die von der IANA speziell f\"ur diesen Zweck spezifiziert wurden und aus diesem Grund auch nicht im Internet genutzt werden k\"onnen. Router im Internet verwerfen Pakete, die als Sender- oder Empf\"angeradresse eine solche private IPv4-Adresse enthalten. Private IPv4-Adressen sind alle IPv4-Adressen aus den Bl\"ocken $10.0.0.0/8$ bis $10.255.255.255/8$, $172.16.0.0/12$ bis $172.31.255.255/12$ sowie $192.168.0.0/16$ bis $192.168.255.255/16$. \\
 \\
 Ein Router hat die Aufgabe, Daten zwischen mindestens zwei Netzwerken zu vermitteln. Ein Anwendungsbeispiel ist ein Router in einem Privathaushalt, siehe Abbildung \ref{stdinetv4}. In diesem Szenario vermittelt der Router Daten zwischen dem Internet (in der Abbildung rot) und dem lokalen Netzwerk (in der Abbildung grün). Router, die solche Szenarien bedienen, nutzen fast ausnahmslos NAT.
 Die Funktion eines Routers, der NAT implementiert ist prinzipiell, dass alle Pakete von Netzwerkteilnehmen mit privater IPV4-Adresse im lokelen Netzwerk, die ins Internet geroutet werden sollen, vom Router so umgeschrieben werden, dass die private Absender-IP jedes Paketes durch die \"offentliche IP-Adresse des Routers ersetzt wird. Erh\"alt der Router Antwortpakete aus dem Internet die an diesen adressiert sind, schreibt er die Empf\"anger-IP wieder auf die private IP-Adresse des Netzwerkger\"ates um und leitet es dann weiter.
@@ -229,7 +229,7 @@ Offenkundigste Neuerung von IPv6 ist die Erweiterung des Adressraums auf 128 Bit
 $2^{128} = 340.282.366.920.938.463.463.374.607.431.768.211.456$ individuelle Adressen bilden. Vergleichweise gering fällt der 32 Bit breite IPv4-Adressraum aus, denn hier lassen sich "`nur"' $2^{32} = 4.294.967.296$ individuelle Adressen bilden. \\
 \\
 Bestand eine IPv4-Adresse aus vier durch einen Dezimalpunkt getrennten Ziffern mit Werten von jeweils zwischen 0 und 255, also zum Beispiel 85.114.130.113, musste für IPv6 mit seinen 128 Bit großen Adressen ein neues Konzept entwickelt werden.
-Der Ziffernbereich umfasst jetzt den Bereich aller Hexadezimalziffern, also 0 bis 9 und A bis F.\footnote{In allen gängigen Betriebssystemen werden IPv4-Adressen durch Dezimalziffern und IPv6-Adressen durch Hexadezimalziffern dargestellt. Prinzipiell unterliegt die Darstellung einer Netzwerkadresse aber keinen Einschränkungen, solange diese eineindeutig ist.} Bis zu vier Hexadezimalziffern werden zu einem Block zusammen gefasst, wobei führende Nullen nicht ausgeschrieben werden m\"ussen. Acht dieser Blöcke, welche durch Doppelpunkte von einander abgegrenzt werden, bilden eine gültige IPv6-Adresse, die vollständig ausgeschrieben  beispielsweise so aussehen kann:  \[ 2001:41d0:0001:f7bb:0000:0000:0000:0001 \]\\
+Der Ziffernbereich umfasst jetzt den Bereich aller Hexadezimalziffern, also 0 bis 9 und A bis F.\footnote{In heute verbreiteten Betriebssystemen (Linux, Mac OS X, Windows) werden IPv4-Adressen durch Dezimalziffern und IPv6-Adressen durch Hexadezimalziffern dargestellt.} Bis zu vier Hexadezimalziffern werden zu einem Block zusammen gefasst, wobei führende Nullen nicht ausgeschrieben werden m\"ussen. Acht dieser Blöcke, welche durch Doppelpunkte von einander abgegrenzt werden, bilden eine gültige IPv6-Adresse, die vollständig ausgeschrieben  beispielsweise so aussehen kann:  \[ 2001:41d0:0001:f7bb:0000:0000:0000:0001 \]\\
 \\
 Um den Umgang mit IPv6-Adressen komfortabler zu gestalten, gibt es mehrere Möglichkeiten, IPv6 Adressen verkürzt darzustellen. So müssen, wie bereits erwähnt, führende Nullen innerhalb eines Block nicht zwingend angegeben werden. Weiterhin ist es pro IPv6-Adresse möglich einen Bereich aus Nullen, der sich über mehrere Blöcke erstrecken kann, wegzulassen und stattdessen nur die Doppelpunkte am Beginn und dem Ende dieses Null-Bereiches darzustellen. Es ist jedoch zu beachten das pro IPv6 Adresse jeweils immer nur ein Nullbereich weggelassen werden darf, da die IPv6 Adresse sonst nicht mehr eineindeutig ist. Durch Anwendung dieser Konventionen lässt sich die oben genannte, voll ausgeschrieben IPv6 Adresse
 \[ 2001:41d0:0001:f7bb:0000:0000:0000:0001 \]
@@ -254,21 +254,23 @@ Von den $2^{128}$ IPv6-Adressen sind laut \cite[RFC5156]{RFC5156} bestimmte Adre
 		\rowcolor[gray]{.95} ::1/128 & Node-Scoped Unicast - unspecified address & bisher unpezifiziert (Stand RFC5156 von April 2008 )\\
 		::FFFF:0:0/96 & IPv4 mapped adress & IPv4 gemappte Adressen. Adressen dieses Typs sollten im \"offentlichen Internet nicht auftauchen.\\
 		\rowcolor[gray]{.95} ::<ipv4-address>/96 & IPv4-Compatible Addresses & Adressbereich um IPv4-Adressen für andere IPv6-Ger\"ate kompatibel einzubetten \\  
-\caption{LautRFC 5161 vordefinierte Adressprefixe in IPv6}
-\label{LautRFC 5161 vordefinierte Adressprefixe in IPv6}
+\caption{Laut RFC 5161 vordefinierte Adressprefixe in IPv6}
+\label{RFC 5161 - vordefinierte Adressprefixe in IPv6}
 \end{longtable}
 
 \subsection{Automatische Netzwerkkonfiguration}
-Bei Verwendung von IPv6 ist es den Netzwerkger\"aten m\"oglich, \"uber so genannte "'Neighbor Discovery Protocol"'  \cite[RFC3122]{RFC3122},  \cite[RFC4861]{RFC4861} zu erfragen, ob sich Router im gleichen Netzwerksegment befinden, wie die Netzwerkclients selbst. Dazu generiert ein Netzwerkger\"at das in einem IPv6-Netzwerk kommunizieren m\"ochte, zuerst eine so genannt "'Link Local Adresse"'. Diese Link-Local-Adresse generiert sich das Ger\"at selbst, unter anderem aus der MAC-Adresse der betreffenden Netzwerkschnittstelle. Charakteristisch f\"ur diese Link-Local-Adressen ist, dass diese immer mit dem Prefix $fe80::$ beginnen. Eine weitere Besonderheit ist der G\"ultigkeitsbereich von Link-Local-Adressen, diese sind nur im aktuellen Netzwerksegment g\"ultig und werden nicht geroutet. In der Konsequenz bedeutet das, dass ein Netzwerkger\"at \"uber die Link-Local-Adresse nur mit anderen Netzwerkger\"aten kommunizieren kann, die sich im gleichen Netzwerksegment befinden. In der folgenden Grafik ist eine beispielhafte IP-Konfiguration des Autors abgebildet, die f\"ur diesen Beleg erstellt wurde.
+Bei Verwendung von IPv6 ist es den Netzwerkger\"aten m\"oglich, \"uber so genannte "'Neighbor Discovery Protocol"'  \cite[RFC3122]{RFC3122},  \cite[RFC4861]{RFC4861} zu erfragen, ob sich Router im gleichen Netzwerksegment befinden, wie die Netzwerkclients selbst. Dazu generiert ein Netzwerkger\"at das in einem IPv6-Netzwerk kommunizieren m\"ochte, zuerst eine so genannt "'Link Local Adresse"'. Diese Link-Local-Adresse generiert sich das Ger\"at selbst, unter anderem aus der MAC-Adresse der betreffenden Netzwerkschnittstelle. Charakteristisch f\"ur diese Link-Local-Adressen ist, dass diese immer mit dem Prefix $fe80::$ beginnen. Eine weitere Besonderheit ist der G\"ultigkeitsbereich von Link-Local-Adressen, diese sind nur im aktuellen Netzwerksegment g\"ultig und werden nicht geroutet. In der Konsequenz bedeutet das, dass ein Netzwerkger\"at \"uber die Link-Local-Adresse nur mit anderen Netzwerkger\"aten kommunizieren kann, die sich im gleichen Netzwerksegment befinden. In der Abbildung \ref{ifconfig} ist eine beispielhafte IP-Konfiguration des Autors abgebildet, die f\"ur diesen Beleg erstellt wurde.
 
 \begin{figure}[htb]
 \begin{center}
  \includegraphics[width=1\hsize]{./images/ifconfig.png}
  \end{center}
-\caption[IP-Konfiguration beispielhaft beim Autor, Quelle: Autor,]{\label{ifconfig}IP-Konfiguration beispielhaft beim Autor}
+\caption[IP-Konfiguration beispielhaft beim Autor, Quelle: Autor,]{
+	\label{ifconfig}IP-Konfiguration beispielhaft beim Autor
+}
 \end{figure}
 
-F\"ur die Recherche zu diesem Beleg wurde auf einem Laptop die Linux-Distribution Kubuntu 12.04 LTS installiert. Der Aufruf des Befehls \textit{ifconfig} meldet f\"ur die Netzwerkschnittstelle "'sixxs"' (Anmerkung: sixxs.net ist ein Netzwerktunnel um Internetzug\"angen ohne natives IPv6 IPv6-Konnektivit\"at zu verschaffen, siehe dazu folgendes Kaptiel) zeigt rot umrahmt die Link-Local-Adresse $fe80::8004:d600:180:2/64$, die nur lokal g\"ultig ist, sowie die global g\"utige IPv6-Adresse $2a02:8204:d600:180::2$, in der Grafik gelb umrahmt.\\
+Während der Erstellung dieser Arbeit wurde eine Konfiguration implementiert, die einem Rechner IPv6-Konnektivität zur Verfügung stellt (Ausführlich wird im Kapitel \ref{sec:4} - \nameref{sec:4} auf die Durchführung dieser Implementierung eingegangen). Der Aufruf des Befehls \textit{ifconfig} meldetauf diesem Rechner  f\"ur die Netzwerkschnittstelle "'sixxs"' (Anmerkung: sixxs.net ist ein Netzwerktunnel um Internetzug\"angen ohne natives IPv6 IPv6-Konnektivit\"at zu verschaffen, siehe dazu folgendes Kaptiel) zeigt rot umrahmt die Link-Local-Adresse $fe80::8004:d600:180:2/64$, die nur lokal g\"ultig ist, sowie die global g\"utige IPv6-Adresse $2a02:8204:d600:180::2$, in der Grafik gelb umrahmt.\\
 \\
 Nachdem sich ein Netzwerkger\"at eine Link-Lokal-Adresse zugewiesen hat, kann dieses, wie bereits oben erw\"ahnt, mit allen anderen Netzwerkger\"aten im gleichen Netzwerksegemnt kommunizieren, beispielsweise um so genannte Router-Advertisements abzusetzen. Das sind Netzwerkanfragen, auf die jeder IPv6-f\"ahige Router im Netzwerksegment antworten muss. Der Router kann dann in der Antwort dem anfragenden Netzwerkger\"at seine eigene IPv6-Adresse sowie das global g\"ultige IPv6-Prefix f\"ur dieses Netzwerksegment mitteilen. Wenn dies erfolgt ist, kann sich das anfragende Netzwerkger\"at aus dem globalen Prefix eine IPv6-Adresse mit globaler G\"ultigkeit generieren, mit deren Hilfe eine vollst\"andige Netzwerkkonnektivit\"at gegeben ist. 
 
@@ -276,12 +278,12 @@ Nachdem sich ein Netzwerkger\"at eine Link-Lokal-Adresse zugewiesen hat, kann di
 \clearpage
 \section{L\"osungsans\"atze in IPv6 zu den Problemen mit IPv4}
 \label{sec:3}
-In diesem Kapitel sollen einige Vorz\"uge von IPv6 angef\"uhrt werden, die Probleme in IPv4 l\"osen.
+In diesem Kapitel werden zu einigen Problemen, die bei der Verwendung von IPv4 auftreten können, Lösungsansätze in IPv6 vorgestellt.
  
 \subsection{Beseitigung der Adressknappheit auf absehbare Zeit}
-Durch den 128 Bit gro{\ss}en Adressraum und der damit verbundenen enormen Menge an zur Verf\"ugung stehenden Adressen sollten der Menschheit f\"ur die n\"achsten Jahrzehnte hinreichend viele IPv6-Adressen zur Verfügung stehen.  Um die enorme Dimension des Adressraums von IPv6 zu verdeutlichen, soll ein kurzes Rechenbeispiel dienen:\\
+Durch den 128 Bit gro{\ss}en Adressraum und der damit verbundenen enormen Menge an zur Verf\"ugung stehenden IPv6-Adressen sollten hinreichend viele IPv6-Adressen zur Verfügung stehen.  Um die enorme Menge von Adressen des Adressraums von IPv6 zu verdeutlichen, soll ein kurzes Rechenbeispiel dienen:\\
 \\
-Die Oberfläche der Erde umfasst grob geschätzt 510 Millionen Quadratkilometer, also $510.000.000.000.000.000.000 mm^2$ . Stellt man diese Fl\"ache der Anzahl der m\"oglichen IPv6-Adressen von $2^{128} = 340.282.366.920.938.463.463.374.607.431.768.211.456$ gegen\"ueber kommt man zu dem Ergebnis, das jedem Quadratmillimeter der Erdoberfl\"ache immernoch theoretisch $667.220.327.295.957.771 $ IPv6-Adressen zugewiesen werden k\"onnen. Praktisch betrachtet ist diese Zahl nicht ganz korrekt, da wie im voran gegangenen Kapitel beschrieben, bestimmte Adressen im IPv6-Adressraum reserviert sind. Dieser Vergleich soll dem Leser aber dennoch verdeutlichen das jedem Quadratmillimeter der Erdoberfl\"ache circa. 155 Millionen mal mehr IPv6-Adressen zugewiesen werden k\"onnen, als im gesamten IPv4-Adressraum (der ja nur 32 Bit gross) ist zur Verf\"ugung stehen. Die folgende Grafik soll den enormen Umfang an IPv6-Adressen im Vergleich zum Umfang der IPv4-Adressen f\"ur den Leser noch einmal illustrieren:
+Die Oberfläche der Erde umfasst grob geschätzt 510 Millionen Quadratkilometer, also $510.000.000.000.000.000.000 mm^2$ . Stellt man diese Fl\"ache der Anzahl der m\"oglichen IPv6-Adressen von $2^{128} = 340.282.366.920.938.463.463.374.607.431.768.211.456$ gegen\"ueber kommt man zu dem Ergebnis, das jedem Quadratmillimeter der Erdoberfl\"ache immernoch theoretisch $667.220.327.295.957.771 $ IPv6-Adressen zugewiesen werden k\"onnen. Praktisch betrachtet ist diese Zahl nicht ganz korrekt, da wie im voran gegangenen Kapitel beschrieben, bestimmte Adressen im IPv6-Adressraum reserviert sind. Dieser Vergleich soll dem Leser aber dennoch verdeutlichen, dass jedem Quadratmillimeter der Erdoberfl\"ache circa. 155 Millionen mal mehr IPv6-Adressen zugewiesen werden k\"onnen, als im gesamten IPv4-Adressraum (der ja nur 32 Bit groß ist) zur Verf\"ugung stehen. Die Abbildung \ref{earth} soll den enormen Umfang an IPv6-Adressen im Vergleich zum Umfang der IPv4-Adressen f\"ur den Leser noch einmal illustrieren:
 
 \clearpage
 
@@ -289,21 +291,25 @@ Die Oberfläche der Erde umfasst grob geschätzt 510 Millionen Quadratkilometer,
 \begin{center}
  \includegraphics[width=1\hsize]{./images/earth.png}
  \end{center}
-\caption[Illustration: Mengenvergleich IPv4-Adressen f\"ur die gesamte Erdbev\"olkerung zu IPv6-Adressen pro Quadratmillimeter Erdoberfl\"ache. Quelle Illustration: Autor, Quelle Erdfoto: \url{http://upload.wikimedia.org/wikipedia/commons/6/6f/Earth_Eastern_Hemisphere.jpg}]{\label{earth}Illustration: Mengenvergleich IPv4-Adressen f\"ur die gesamte Erdbev\"olkerung zu IPv6-Adressen pro Quadratmillimeter Erdoberfl\"ache.  Quelle Illustration: Autor, Quelle Erdfoto: \url{http://upload.wikimedia.org/wikipedia/commons/6/6f/Earth_Eastern_Hemisphere.jpg}}
+\caption[Illustration: Mengenvergleich IPv4-Adressen f\"ur die gesamte Erdbev\"olkerung zu IPv6-Adressen pro Quadratmillimeter Erdoberfl\"ache. Quelle Illustration: Autor, Quelle Erdfoto: \url{http://upload.wikimedia.org/wikipedia/commons/6/6f/Earth_Eastern_Hemisphere.jpg}]{
+	\label{earth}Illustration: Mengenvergleich IPv4-Adressen f\"ur die gesamte Erdbev\"olkerung zu IPv6-Adressen pro Quadratmillimeter Erdoberfl\"ache.
+}
 \end{figure}
 
 \subsection{Vereinfachte Netzwerkwartung}
 
-Unerfahrene Nutzer m\"ussen viel weniger administrativ t\"atig werden als in IPv4. Im Normalfall muss der Benutzer nichts weiter tun, als sein Ger\"at mit dem Netzwerk verbinden und einschalten. Somit sinkt auch die Fehlerquote durch Fehlkonfigurationen. Beispielsweise m\"ussen Router nicht mehr von Hand konfiguriert werden. In IPv6 existieren so genannte \textit{Router-Advertisements}. Wenn ein Netzwerkclient in einem IPv6-Netzwerk benachbarte Router anfragt, m\"ussen sich laut IPv6-Standard alle Router in diesem Netzwerk mit einem Router-Advertisement dem Netzwerkclient gegen\"uber bekannt machen. Dem Netzwerkger\"at stehen im Anschluss alle Informationen zur Verf\"ugung, die f\"ur eine vollst\"andige Internetkonnektivit\"at erforderlich sind. 
+Eines der grundlegenden Konzepte von IPv6 ist es, möglichst viele Konfigurationsvorgänge zu automatisieren. Damit werden einerseits unerfahrene Benutzer entlastet, andererseits werden potentielle Fehlerquellen durch Fehlkonfigurationen des Benutzers verringert.  Im Normalfall muss der Benutzer nichts weiter tun, als sein Ger\"at mit dem Netzwerk verbinden und einschalten. Somit sinkt auch die Fehlerquote durch Fehlkonfigurationen. Beispielsweise m\"ussen Router nicht mehr von Hand konfiguriert werden. In IPv6 existieren so genannte \textit{Router-Advertisements}. Wenn ein Netzwerkclient in einem IPv6-Netzwerk benachbarte Router anfragt, m\"ussen sich laut IPv6-Standard alle Router in diesem Netzwerk mit einem Router-Advertisement dem Netzwerkclient gegen\"uber bekannt machen. Dem Netzwerkger\"at stehen im Anschluss alle Informationen zur Verf\"ugung, die f\"ur eine vollst\"andige Internetkonnektivit\"at erforderlich sind. 
 
 \subsection{Verkleinerung der Routingtabellen}
-In den Standards zu IPv6 ist vorgesehen, dass jedem Kunden mindestens ein /64-Netz zugeteilt wird. Indem man Kunden komplette Netze zuteilt und die Adressverteilung dem Kunden, beziehungsweise dessen Router selbst überlässt, schrumpft der Umfang der Routingtabellen, die öffentliche Router im Internet vorhalten müssen, erheblich. Die folgende Grafik, die der Website unter \cite{ipv4v6map} entliehen ist, soll diesen Umstand visualisieren.
+In den Standards zu IPv6 ist vorgesehen, dass jedem Kunden mindestens ein /64-Netz zugeteilt wird. Indem man Kunden komplette Netze zuteilt und die Adressverteilung dem Kunden, beziehungsweise dessen Router selbst überlässt, schrumpft der Umfang der Routingtabellen, die öffentliche Router im Internet vorhalten müssen, erheblich. Die Abbildung \ref{ipv4v6map}, die der Website unter \cite{ipv4v6map} entliehen ist, soll diesen Umstand visualisieren.
 
 \begin{figure}[htb]
 \begin{center}
  \includegraphics[width=.7\hsize]{./images/ipv4v6map.png}
  \end{center}
-\caption[Visuelle Darstellung des Umfangs der Routingtabellen in IPv4 und IPv6, Quelle: \url{http://greenbyte.ch/wp-content/uploads/2012/08/ipv4-ipv6.gif?cf3116}]{\label{ipv4v6map}Visuelle Darstellung des Umfangs der Routingtabellen in IPv4 und IPv6, Quelle: \url{http://greenbyte.ch/wp-content/uploads/2012/08/ipv4-ipv6.gif?cf3116}}
+\caption[Visuelle Darstellung des Umfangs der Routingtabellen in IPv4 und IPv6, Quelle: \url{http://greenbyte.ch/wp-content/uploads/2012/08/ipv4-ipv6.gif?cf3116}]{
+	\label{ipv4v6map}Visuelle Darstellung des Umfangs der Routingtabellen in IPv4 (a) und IPv6 (b)
+}
 \end{figure}
 
 \clearpage
@@ -338,23 +344,32 @@ Ein solcher Erweiterungsheader besteht dann aus den Feldern:
 Somit ist sichergestellt, dass die IPv6-Header so klein wie möglich und so groß wie unbedingt nötig sind.  
 
 \subsection{NAT in IPv6}
-Wenn IPv6 den Vorgaben entsprechend betrieben wird, umfasst das unter anderem, dass jedem Teilnehmer im Internet von seinem Internet Service Provider ein 64 Bit gro{\ss}er  IPv6-Adressblock zugeteilt wird. Im Detail wird dem Kunden nur noch ein Adressprefix von 64 Bit zugeteilt. Wie der Kunde beziehungsweise dessen Netzwerkger\"ate die restlichen 64 Bit im lokalen Netzwerk verteilen, ist dem Kunden beziehungsweise dessen Netzwerkger\"aten  \"uberlassen. Ein gro{\ss}er Vorteil ist hierbei, dass jede einzelne IPv6-Adresse aus diesem 64 Bit gro{\ss}em Adressblock global routbar ist und somit nicht mehr die Notwenigkeit besteht Technologien wie NAT einsetzen zu m\"ussen, um nur lokal g\"ultige IPv4-Adressen auf eine einzelne, global g\"ultige IPv4-Adresse des Routers abzubilden.\\
+Wenn IPv6 den Vorgaben entsprechend betrieben wird, umfasst das unter anderem, dass jedem Teilnehmer im Internet von seinem Internet Service Provider ein 64 Bit gro{\ss}er  IPv6-Adressblock zugeteilt wird. Im Detail wird dem Kunden nur noch ein Adressprefix von 64 Bit zugeteilt. Wie der Kunde beziehungsweise dessen Netzwerkger\"ate die restlichen 64 Bit im lokalen Netzwerk verteilen, ist dem Kunden beziehungsweise dessen Netzwerkger\"aten  \"uberlassen. Ein gro{\ss}er Vorteil ist hierbei, dass jede einzelne IPv6-Adresse aus diesem 64 Bit gro{\ss}em Adressblock global routbar ist und somit nicht mehr die Notwenigkeit besteht, Technologien wie NAT einsetzen zu m\"ussen, um nur lokal g\"ultige IPv4-Adressen auf eine einzelne, global g\"ultige IPv4-Adresse des Routers abzubilden.\\
 \\
+Ein Router, der im heimischen Netzwerk die Schnittstelle zum Internet darstellt, ist nun nicht mehr, wie bei bei ausschließlicher Verwendung von IPv4 gezwungen, die Netzwerkpakete f\"ur jedes Netzwerkger\"at im lokalen Netzwerk per NAT zu modifizieren. Da jedes Netzwerkger\"at bei Verwendung von IPv6 seine eigene öffentliche und somit  global g\"ultige Adresse hat, ist eine eineindeutige Zuordnung der eingehenden und ausgehenden Netzwerkpakete zu den Netzwerkger\"aten f\"ur den Router ohne Probleme m\"oglich.  Die Abbildung \ref{stdinet} soll beispielhaft den Sachverhalt verdeutlichen:
 
-Ein Router, der im heimischen Netzwerk die Schnittstelle zum Internet darstellt, ist nun nicht mehr, wie bei IPv4, gezwungen die Netzwerkpakete f\"ur jedes Netzwerkger\"at im lokalen Netzwerk per NAT zu modifizieren. Da jedes Netzwerkger\"at bei Verwendung von IPv6 seine eigene global g\"ultige Adresse hat, ist eine eineindeutige Zuordnung der eingehenden und ausgehenden Netzwerkpakete zu den Netzwerkger\"aten f\"ur den Router ohne Probleme m\"oglich.  Folgende Grafik soll beispielhaft den Sachverhalt verdeutlichen:
+\begin{figure}[htb]
+\begin{center}
+ \includegraphics[width=1\hsize]{./Zeichnungen/IPv4NAT.pdf}
+ \end{center}
+\caption[Beispielhafte Standardkonfiguration eines Internetanschluss mit alleiniger IPv4-Konnektivität. Da nur eine öffentliche IPv4-Adresse zur Verfügung steht, ist der Einsatz von NAT zwingend erforderlich. Quelle: Autor, verwendete Symbole unterliegen der
+GPL]{\label{stdinetv4}Beispielhafte Standardkonfiguration eines Internetanschluss mit alleiniger IPv4-Konnektivität. Da nur eine öffentliche IPv4-Adresse zur Verfügung steht, ist der Einsatz von NAT zwingend erforderlich.}
+\end{figure}
 
 \begin{figure}[htb]
 \begin{center}
  \includegraphics[width=.8\hsize]{./Zeichnungen/IPv6.pdf}
  \end{center}
 \caption[Beispielhafte Standardkonfiguration eines Internetanschluss mit nativer IPv6-Konnektivit\"at, Quelle: Autor, verwendete Symbole unterliegen der
-GPL]{\label{stdinet}Beispielhafte Standardkonfiguration eines Internetanschluss mit nativer IPv6-Konnektivit\"at.}
+GPL]{\label{stdinet}Beispielhafte Standardkonfiguration eines Internetanschluss mit nativer IPv6-Konnektivit\"at. Vergleiche dazu Abbildung \ref{stdinetv4}}
 \end{figure}
+
+Im Vergleich zu Abbildung \ref{stdinetv4} haben hier nicht nur die rot dargestellten Netzwerkschnittstellen, die sich im Internet befinden öffentliche IP-Adressen. Auch die grün dargestellten Netzwerkschnittstellen im lokalen Netzwerk sind mit öffentlichen IPv6-Adressen ausgestattet. In dieser Konfiguration besteht keine Notwendigkeit, Technologien wie NAT einzusetzen. Somit sind in dieser Konfiguration auch die Problem, die sich beim Einsatz von NAT ergeben, eliminiert. 
 
 \clearpage
 \section{Praxisbeispiel - Konfiguration eines Rechners für IPv6-Konnektivität}
 \label{sec:4}
-Wenn man  Webinhalte \"uber IPv6 abgrufen m\"ochte, ben\"otigt man einen Internetanschluss mit IPv6-Konnektivit\"at. Dazu gibt es zwei M\"oglichkeiten, entweder der verwendete Internet Service Provider stellt IPv6 am Internetnetanschluss direkt zur Verf\"ugung, oder man muss selbst nachbessern. Die beiden M\"oglichkeiten werden im Folgenden n\"aher beschrieben
+Wenn man  Webinhalte \"uber IPv6 abgrufen m\"ochte, ben\"otigt man einen Internetanschluss mit IPv6-Konnektivit\"at. Dazu gibt es zwei M\"oglichkeiten, entweder der verwendete Internet Service Provider stellt IPv6 am Internetnetanschluss direkt zur Verf\"ugung, oder man muss selbst nachbessern. Die beiden M\"oglichkeiten werden in diesem Kapitel erläutert, sowie eine Beispielkonfiguration vorgestellt.
 
 \subsection{IPv6-Konnektivit\"at nativ vom Internet Service Provider}
 Falls der verwendete Internet Service Provider IPv6 nativ am verwendeten Internet Anschlu{\ss} zur Verf\"ugung stellt und auch die eingesetzten Router IPv6-f\"ahig sind, hat der Benutzer nichts weiter zu tun, als sein IPv6-f\"ahiges Netzwerkger\"at mit dem Netzwerk zu verbinden. Durch die in den voran gegangenen Kapiteln vorgestellten, fortschrittlichen Adressfindungsmechanismen in IPv6 wird vollst\"andige Netzwerkkonnektivit\"at ohne manuelles Eingreifen des Benutzers hergestellt.\\
@@ -372,6 +387,23 @@ Ist der Anwender an einen Internet Service Provider gebunden, der noch kein nati
  \end{center}
 \caption[Webseite der Anbieters \url{https://sixxs.net} f\"ur einen kostenfreien IPv6-Tunnelendpunkt]{\label{sixxs}Webseite der Anbieters \url{https://sixxs.net} f\"ur einen kostenfreien IPv6-Tunnelendpunkt}
 \end{figure}
+
+\subsection{Beispielkonfiguration eines IPv6-Tunnels}
+
+\subsubsection{eingesetzte Hardware}
+In der Beispielkonfiguration wird als Hardwaregrundlage ein Laptop vom Hersteller Hewlett Packard eingesetzt. Es handelt sich dabei um das Modell Elitebook 8470w mit folgender Austattung:
+\begin{description}
+\item[Prozessor:] Intel(R) Core(TM) i7-3740QM CPU: 4 physische Kerne, 8 logische Kerne, Standardtakt 2,7 GHz, Cache 6MB
+\item[Hauptspeicher:] 16GB DDR3-RAM
+\item[Festplatte:] Micron SSD, Kapazität 256 GB 
+\end{description}
+
+Es kann jedoch auch jedes andere i386 oder amd64-basierte Rechnersystem verwendet werden. 
+
+\subsubsection{eingesetzte Software}
+Als Betriebssystem dient die Linux-Distribution Kubuntu 12.04.1 LTS, welches mit den von der Installationsroutine vorgeschlagenen Standardeinstellungen installiert wurde. Weiterhin wurde das Softwarepaket AICCU installiert. 
+
+\subsubsection{Vorgehensweise bei der Implementierung}
 
 Ein solcher Tunnel l\"asst sich an einem Router oder auch direkt in einem Netzwerkendger\"at konfigurieren. Setzt man beispielsweise Linux ein, kann man mit dem Softwarepaket \textit{aiccu} sehr einfach die Konfiguration des IPv6-Tunnels vom Typ AYIYA (Anything in Anything, siehe\cite[sixxsayiya]{sixxsayiya} )abschlie{\ss}en. F\"ur das Testsystem mit dem Betriebssystem Kubuntu 12.04 LTS war es nur erforderlich das Paket \textit{aiccu} mittels 
 
